@@ -1,68 +1,71 @@
-// Navigation helper
-function movePage(url) {
-  window.location.href = url;
-}
-
-const fileInput = document.getElementById("file-input");
-const uploadArea = document.getElementById("upload-area");
-const preview = document.getElementById("preview");
-const analyzeBtn = document.getElementById("analyze-btn");
-const resultBox = document.getElementById("result");
+// Grab elements
 const cameraBtn = document.getElementById("camera-btn");
+const uploadBtn = document.getElementById("upload-btn");
+const cameraInput = document.getElementById("camera-input");
+const fileInput = document.getElementById("file-input");
+const preview = document.getElementById("preview");
+const resultBox = document.getElementById("result");
 
-let stream;
+// Trigger hidden inputs
+cameraBtn.addEventListener("click", () => cameraInput.click());
+uploadBtn.addEventListener("click", () => fileInput.click());
 
-// Drag & drop support
-uploadArea.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  uploadArea.style.background = "#ddd";
+// Handle file selection (camera or upload)
+[cameraInput, fileInput].forEach(input => {
+  input.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Show preview
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
+
+      // Analyze with backend
+      analyzeImage(file);
+    }
+  });
 });
-uploadArea.addEventListener("dragleave", () => {
-  uploadArea.style.background = "var(--cream)";
-});
-uploadArea.addEventListener("drop", (e) => {
-  e.preventDefault();
-  fileInput.files = e.dataTransfer.files;
-  showPreview();
-});
 
-// Show preview for uploaded file
-fileInput.addEventListener("change", showPreview);
+// Send image to backend for Google Vision analysis
+async function analyzeImage(file) {
+  resultBox.innerHTML = "<p>🔎 Analyzing artifact...</p>";
 
-function showPreview() {
-  const file = fileInput.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    preview.innerHTML = `<img src="${e.target.result}" alt="Artifact preview">`;
-  };
-  reader.readAsDataURL(file);
+  try {
+    // Convert file to base64
+    const base64Data = await toBase64(file);
+
+    // Send to backend
+    const response = await fetch("http://localhost:5000/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ image: base64Data })
+    });
+
+    if (!response.ok) throw new Error("Server error");
+
+    const data = await response.json();
+
+    if (data.labels && data.labels.length > 0) {
+      resultBox.innerHTML = `
+        <h3>Results:</h3>
+        <ul>
+          ${data.labels.map(label => `<li>${label}</li>`).join("")}
+        </ul>
+      `;
+    } else {
+      resultBox.innerHTML = "<p>No labels detected.</p>";
+    }
+  } catch (err) {
+    console.error(err);
+    resultBox.innerHTML = "<p>❌ Error analyzing image. Check backend connection.</p>";
+  }
 }
 
-// Start camera when button is clicked
-cameraBtn.addEventListener("click", startCamera);
-
-async function startCamera() {
-  try {
-    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-    const video = document.createElement("video");
-    video.autoplay = true;
-    video.playsInline = true;
-    video.style.maxWidth = "100%";
-    video.style.borderRadius = "8px";
-    preview.innerHTML = "";
-    preview.appendChild(video);
-    video.srcObject = stream;
-
-    // Add capture button
-    const snapBtn = document.createElement("button");
-    snapBtn.textContent = "📸 Capture Photo";
-    preview.appendChild(snapBtn);
-
-    snapBtn.addEventListener("click", () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const dataUrl = canvas.toDataURL("image")
+// Helper: convert file to base64
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = error => reject(error);
+  });
+}
