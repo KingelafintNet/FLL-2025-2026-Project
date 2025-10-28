@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artifact Filters | Digscord</title>
+  <link rel="stylesheet" href="/css/filters.css"/>
+</head>
+<body>
+  <!-- Header with full nav -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🗿</span>
+      <span class="brand">Digscord</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="identify.html" class="nav-btn">Identify</a>
+      <a href="collection.html" class="nav-btn">Collection</a>
+      <a href="filters.html" class="nav-btn">Filters</a>
+      <a href="map.html" class="nav-btn">Map</a>
+      <a href="chat.html" class="nav-btn">Chat</a>
+      <a href="funding.html" class="nav-btn">Funding</a>
+      <a href="volunteer.html" class="nav-btn">Volunteer</a>
+      <a href="trivia.html" class="nav-btn">Trivia</a>
+    </nav>
+    <div class="sign-in">
+      <a href="visitor.html" class="sign-btn">Visitor sign-in</a>
+      <a href="arch.html" class="sign-btn alt">Archeologist sign-in</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="filters-container">
+    <h2>Artifact Filters</h2>
+    <form id="filter-form" class="filter-form">
+      <label for="type">Type</label>
+      <input type="text" id="type" name="type" placeholder="e.g. Pottery, Coin">
+
+      <label for="period">Period</label>
+      <input type="text" id="period" name="period" placeholder="e.g. Bronze Age">
+
+      <label for="region">Region</label>
+      <input type="text" id="region" name="region" placeholder="e.g. Mesoamerica">
+
+      <label for="material">Material</label>
+      <input type="text" id="material" name="material" placeholder="e.g. Obsidian, Clay">
+
+      <label for="color">Color</label>
+      <input type="text" id="color" name="color" placeholder="e.g. Red, Gold">
+
+      <button type="submit" id="filter-btn">Filter Artifacts</button>
+    </form>
+
+    <div id="filter-results" class="filter-results"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
+  </footer>
+
+  <script src="/js/filters.js"></script>
+</body>
+</html>

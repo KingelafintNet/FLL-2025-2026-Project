@@ -3,51 +3,50 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digscord — Collection</title>
-    <link rel="stylesheet" href="collection.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Artifact Collection | Digscord</title>
+  <link rel="stylesheet" href="/css/collection.css"/>
 </head>
 <body>
-  <header class="app-header">
-    <div class="brand">
-      <div class="logo">🗿</div>
-      <h1>Digscord</h1>
+  <!-- Header with full nav -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🗿</span>
+      <span class="brand">Digscord</span>
     </div>
-    <nav class="top-nav">
-      <a class="nav-btn" href="index.html">Home</a>
-      <a class="nav-btn" href="identify.html">Identify</a>
-      <a class="nav-btn accent" href="collections.html" aria-current="page">Collection</a>
+    <nav class="nav">
+      <button onclick="movePage('index.html')" class="nav-btn">Home</button>
+      <button onclick="movePage('identify.html')" class="nav-btn">Identify</button>
+      <button onclick="movePage('collection.html')" class="nav-btn">Collection</button>
+      <button onclick="movePage('filters.html')" class="nav-btn">Filters</button>
+      <button onclick="movePage('map.html')" class="nav-btn">Map</button>
+      <button onclick="movePage('chat.html')" class="nav-btn">Chat</button>
+      <button onclick="movePage('funding.html')" class="nav-btn">Funding</button>
+      <button onclick="movePage('volunteer.html')" class="nav-btn">Volunteer</button>
+      <button onclick="movePage('trivia.html')" class="nav-btn">Trivia</button>
     </nav>
+    <div class="sign-in">
+      <button onclick="movePage('visitor.html')" class="sign-btn">Visitor sign-in</button>
+      <button onclick="movePage('arch.html')" class="sign-btn alt">Archeologist sign-in</button>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="view collection" aria-labelledby="collection-title">
-      <h2 id="collection-title">My Virtual Collection</h2>
-      <p>Your identified artifacts are saved here with location and timestamps.</p>
+  <!-- Main content -->
+  <main class="collection-container">
+    <h2>Artifact Collection</h2>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search artifacts...">
+      <button id="search-btn">Search</button>
+    </div>
 
-      <div class="actions">
-        <button class="btn primary" id="addMockBtn">Add mock artifact</button>
-        <button class="btn secondary" id="clearBtn">Clear collection</button>
-      </div>
-
-      <div id="collectionGrid" class="grid" aria-live="polite"></div>
-
-      <aside class="card">
-        <h3>Collection tips</h3>
-        <ul>
-          <li><strong>Location:</strong> Note GPS coordinates accurately.</li>
-          <li><strong>Context:</strong> Describe soil, depth, and nearby features.</li>
-          <li><strong>Photos:</strong> Capture multiple angles with scale.</li>
-          <li><strong>Respect:</strong> Do not disturb the site; inform authorities if required.</li>
-        </ul>
-      </aside>
-    </section>
+    <div id="artifact-grid" class="artifact-grid">
+      <!-- Artifacts will be injected here -->
+    </div>
   </main>
 
-  <footer class="app-footer">
-    <div>© Digscord – Respect the land. Honor the past. Empower the future.</div>
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
   </footer>
 
-  <script src="collections.js"></script>
+  <script src="/js/collection.js"></script>
 </body>
 </html>

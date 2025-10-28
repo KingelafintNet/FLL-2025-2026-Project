@@ -1,84 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digscord — Identify</title>
-  <link rel="stylesheet" href="identify.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Identify Artifact | Digscord</title>
+  <link rel="stylesheet" href="/css/identify.css"/>
 </head>
 <body>
-  <header class="app-header">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">🗿</div>
-      <h1>Digscord</h1>
+  <!-- Header with full nav -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🗿</span>
+      <span class="brand">Digscord</span>
     </div>
-    <nav class="top-nav" aria-label="Primary">
-      <a class="nav-btn" href="./collection.html">Collection</a> 
-      <a class="nav-btn" href="./index.html">Home</a>
-      <a class="nav-btn" href="./identify.html">Identify</a>
-      <a class="nav-btn accent" href="./identify.html" aria-current="page">Identify</a>
+    <nav class="nav">
+      <button onclick="movePage('index.html')" class="nav-btn">Home</button>
+      <button onclick="movePage('identify.html')" class="nav-btn">Identify</button>
+      <button onclick="movePage('collection.html')" class="nav-btn">Collection</button>
+      <button onclick="movePage('filters.html')" class="nav-btn">Filters</button>
+      <button onclick="movePage('map.html')" class="nav-btn">Map</button>
+      <button onclick="movePage('chat.html')" class="nav-btn">Chat</button>
+      <button onclick="movePage('funding.html')" class="nav-btn">Funding</button>
+      <button onclick="movePage('volunteer.html')" class="nav-btn">Volunteer</button>
+      <button onclick="movePage('trivia.html')" class="nav-btn">Trivia</button>
     </nav>
+    <div class="sign-in">
+      <button onclick="movePage('visitor.html')" class="sign-btn">Visitor sign-in</button>
+      <button onclick="movePage('arch.html')" class="sign-btn alt">Archeologist sign-in</button>
+    </div>
   </header>
-  
 
-  <main class="container">
-    <section class="view identify" aria-labelledby="identify-title">
-      <h2 id="identify-title">Identify an artifact</h2>
-      <p>Upload a photo. Digscord’s AI suggests an ID, probable time period, and background.</p>
+  <!-- Main content -->
+  <main class="identify-container">
+    <h2>Identify Artifact</h2>
+    <p>Upload an artifact image and Digscord will suggest an identification.</p>
 
-      <div class="upload-card">
-        <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Upload zone">
-          <input type="file" accept="image/*" id="artifactFile" hidden aria-hidden="true"/>
-          <button class="btn primary" id="choosePhoto" aria-controls="artifactFile">Choose photo</button>
-          <p class="muted">Or drag & drop an image here</p>
-        </div>
+    <div class="upload-area" id="upload-area">
+      <input type="file" id="file-input" accept="image/*" capture="environment" hidden>
+      <label for="file-input" class="upload-label">
+        Click or drag artifact image here to upload (or take a photo)
+      </label>
+    </div>
 
-        <figure class="preview">
-          <img id="previewImg" alt="Artifact preview" class="preview-img"/>
-          <figcaption id="previewCaption" class="muted"></figcaption>
-        </figure>
-      </div>
+    <!-- New Camera Button -->
+    <button id="camera-btn">Use Camera</button>
 
-      <div class="actions">
-        <button class="btn primary" id="runAiBtn" aria-describedby="identify-help">Run AI identification</button>
-        <button class="btn secondary" id="clearBtn">Clear</button>
-      </div>
-      <p id="identify-help" class="muted">Results are simulated for this demo.</p>
+    <div id="preview"></div>
 
-      <div class="ai-result" id="aiResult" aria-live="polite"></div>
+    <button id="analyze-btn">Analyze Artifact</button>
 
-      <div class="legal-banner">
-        <strong>Heads up:</strong> Removing artifacts from protected lands is illegal. Leave items in situ and report responsibly.
-      </div>
-
-      <aside class="card">
-        <h3>Tips for a good photo</h3>
-        <ul class="tips">
-          <li><strong>Scale:</strong> Include a ruler or coin.</li>
-          <li><strong>Angles:</strong> Shoot top, side, and edge views.</li>
-          <li><strong>Lighting:</strong> Use diffuse light; avoid harsh shadows.</li>
-        </ul>
-      </aside>
-    </section>
+    <div id="result" class="result-box"></div>
   </main>
 
-  <!-- Summary modal -->
-  <div class="modal" id="summaryModal" role="dialog" aria-modal="true" aria-labelledby="summary-title">
-    <div class="modal-content">
-      <h3 id="summary-title">Identification summary</h3>
-      <div id="summaryBody"></div>
-      <div class="modal-actions">
-        <button class="btn secondary" id="closeSummaryBtn">Close</button>
-        <button class="btn primary" id="addToCollectionBtn">Add to collection</button>
-      </div>
-    </div>
-  </div>
-
-  <footer class="app-footer">
-    <div>© Digscord – Respect the land. Honor the past. Empower the future.</div>
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
+    <p id="note">The navigation bar buttons aren't working right now sorry for the inconvience!</p> 
   </footer>
 
-  <script src="identify.js"></script>
+  <script src="/js/identify.js"></script>
 </body>
 </html>

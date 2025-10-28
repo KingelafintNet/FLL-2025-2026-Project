@@ -1,70 +1,42 @@
-// Collections page logic
+// Navigation helper
+function movePage(url) {
+  window.location.href = url;
+}
 
-const collectionGrid = document.getElementById("collectionGrid");
-const addMockBtn = document.getElementById("addMockBtn");
-const clearBtn = document.getElementById("clearBtn");
+// Example artifact data
+const artifacts = [
+  { name: "Earthenware Jug", img: "images/jug.webp" },
+  { name: "Stone Arrowhead", img: "images/arrowhead.png" },
+  { name: "Ceremonial Pot", img: "images/pot.png" },
+  { name: "Ceremonial Bowl", img: "images/bowl.png" },
+  { name: "Ancient Coin", img: "images/coin.png" },
+  { name: "Amulet", img: "images/amulet.png" }
+];
 
-let MyCollection = [];
+const grid = document.getElementById("artifact-grid");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
 
-function renderCollection() {
-  collectionGrid.innerHTML = "";
-  if (MyCollection.length === 0) {
-    collectionGrid.innerHTML = `
-      <div class="card">
-        <h4>No items yet</h4>
-        <p class="muted">Identify an artifact to add it to your virtual collection.</p>
-      </div>`;
-    return;
-  }
-  const frag = document.createDocumentFragment();
-  MyCollection.forEach(item => {
-    const el = document.createElement("div");
-    el.className = "card";
-    el.innerHTML = `
-      <h4>${item.type} — ${item.culture}</h4>
-      <p class="muted">${formatPeriod(item.startYear, item.endYear)}</p>
-      <p>${item.location}</p>
-      <p class="muted">${new Date(item.timestamp).toLocaleString()}</p>
+// Render artifacts
+function renderArtifacts(list) {
+  grid.innerHTML = "";
+  list.forEach(a => {
+    const card = document.createElement("div");
+    card.classList.add("artifact-card");
+    card.innerHTML = `
+      <img src="${a.img}" alt="${a.name}">
+      <h3>${a.name}</h3>
     `;
-    frag.appendChild(el);
+    grid.appendChild(card);
   });
-  collectionGrid.appendChild(frag);
 }
-
-function formatPeriod(start, end) {
-  const fmt = y => (y < 0 ? `${Math.abs(y)} BCE` : `${y} CE`);
-  return `${fmt(start)} to ${fmt(end)}`;
-}
-
-function randomId() {
-  return Math.random().toString(36).slice(2) + "-" + Date.now().toString(36);
-}
-function pick(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
-
-const TYPES = ["Arrowhead","Pottery shard","Scraper","Spear point","Bead"];
-const CULTURES = ["Hopewell","Woodland","Mississippian","Clovis","Ancestral Puebloan"];
-
-function makeMockArtifact() {
-  return {
-    id: randomId(),
-    type: pick(TYPES),
-    culture: pick(CULTURES),
-    startYear: pick([-11000,-500,-200,900,1100]),
-    endYear: pick([-10000,200,200,1200,1300]),
-    location: "DRSS address, Beavercreek, OH",
-    timestamp: Date.now()
-  };
-}
-
-addMockBtn.addEventListener("click", () => {
-  MyCollection.push(makeMockArtifact());
-  renderCollection();
-});
-
-clearBtn.addEventListener("click", () => {
-  MyCollection = [];
-  renderCollection();
-});
 
 // Initial render
-renderCollection();
+renderArtifacts(artifacts);
+
+// Search functionality
+searchBtn.addEventListener("click", () => {
+  const term = searchInput.value.toLowerCase();
+  const filtered = artifacts.filter(a => a.name.toLowerCase().includes(term));
+  renderArtifacts(filtered);
+});

@@ -1,0 +1,99 @@
+:root {
+    --cream: #EAEFBD;
+    --tea-green: #C9E3AC;
+    --pistachio: #90BE6D;
+    --carrot-orange: #EA9010;
+    --dark-brown: #37371F;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: var(--cream);
+    color: var(--dark-brown);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header/nav */
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--pistachio);
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .logo .icon { margin-right: 0.5rem; }
+  .nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    background: var(--tea-green);
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+  }
+  .nav-btn:hover {
+    background: var(--carrot-orange);
+    color: white;
+  }
+  .sign-in {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .sign-btn {
+    background: var(--tea-green);
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .sign-btn.alt {
+    background: var(--carrot-orange);
+    color: white;
+  }
+  
+  /* Main map container */
+  .map-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+  .map-container h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Responsive map */
+  #map {
+    flex: 1;
+    height: 80vh;       /* fills 80% of viewport height */
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--dark-brown);
+  }
+  
+  /* Footer */
+  .site-footer {
+    background: var(--dark-brown);
+    color: var(--cream);
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  

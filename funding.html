@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trivia | Digscord</title>
+  <link rel="stylesheet" href="/css/trivia.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🎒</span>
+      <span class="brand">Digscord</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="collection.html" class="nav-btn">Collection</a>
+      <a href="filters.html" class="nav-btn">Filters</a>
+      <a href="map.html" class="nav-btn">Map</a>
+      <a href="chat.html" class="nav-btn">Chat</a>
+      <a href="funding.html" class="nav-btn">Funding</a>
+      <a href="volunteer.html" class="nav-btn">Volunteer</a>
+      <a href="trivia.html" class="nav-btn">Trivia</a>
+    </nav>
+    <div class="sign-in">
+      <a href="visitor.html" class="sign-btn">Visitor sign-in</a>
+      <a href="arch.html" class="sign-btn alt">Archeologist sign-in</a>
+    </div>
+  </header>
+
+  <main class="trivia-container">
+    <h2>Trivia Time 🏺</h2>
+
+    <div class="setup-box">
+      <label>Level:</label>
+      <button class="level-btn active" data-level="easy">Easy</button>
+      <button class="level-btn" data-level="normal">Normal</button>
+      <button class="level-btn" data-level="hard">Hard</button>
+
+      <label>Questions:</label>
+      <input type="number" id="question-count" value="5" min="1" max="10" />
+      <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <div id="question-box">
+      <p id="progress-display"></p>
+      <p id="score-display"></p>
+      <p id="question-text">Choose settings and start quiz.</p>
+      <div id="choices"></div>
+      <p id="feedback"></p>
+      <button id="next-btn">Next Question</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
+  </footer>
+
+  <script src="/js/trivia.js"></script>
+</body>
+</html>

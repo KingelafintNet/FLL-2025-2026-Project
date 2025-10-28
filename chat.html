@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat | Digscord</title>
+  <link rel="stylesheet" href="/css/chat.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🗿</span>
+      <span class="brand">Digscord</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="collection.html" class="nav-btn">Collection</a>
+      <a href="filters.html" class="nav-btn">Filters</a>
+      <a href="map.html" class="nav-btn">Map</a>
+      <a href="chat.html" class="nav-btn">Chat</a>
+      <a href="funding.html" class="nav-btn">Funding</a>
+      <a href="volunteer.html" class="nav-btn">Volunteer</a>
+      <a href="trivia.html" class="nav-btn">Trivia</a>
+    </nav>
+    <div class="sign-in">
+      <a href="visitor.html" class="sign-btn">Visitor sign-in</a>
+      <a href="arch.html" class="sign-btn alt">Archeologist sign-in</a>
+    </div>
+  </header>
+
+  <!-- Main Chat -->
+  <main class="chat-container">
+    <aside class="channels">
+      <h3>Channels</h3>
+      <button class="channel-btn" data-channel="general">General</button>
+      <button class="channel-btn" data-channel="citizens">Citizen Chat</button>
+      <button class="channel-btn" data-channel="arch-north">Archeologists — North</button>
+      <button class="channel-btn" data-channel="arch-south">Archeologists — South</button>
+      <button class="channel-btn" data-channel="arch-east">Archeologists — East</button>
+      <button class="channel-btn" data-channel="arch-west">Archeologists — West</button>
+    </aside>
+
+    <section class="chat-room">
+      <div id="chat-history" class="chat-history"></div>
+      <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Type a message here..."/>
+        <button id="send-btn">Send</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
+  </footer>
+
+  <script src="/js/chat.js"></script>
+</body>
+</html>
