@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Digscord – Archeology AI & Crowdsourcing
+    Part 1: index.html (extended)
+    Notes:
+    - Uses color scheme: EAEFBD, C9E3AC, 90BE6D, EA9010, 37371F
+    - Includes comprehensive markup with semantic sections, templates, and placeholders
+    - CSS and JS are referenced as styles.css and app.js (to be provided in parts 2 & 3)
+    - Accessibility: landmarks, ARIA roles, alt text, labels, keyboard navigation considerations
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#90BE6D"/>
+  <title>Digscord - Archeology AI & Crowdsourcing</title>
+  <meta name="description" content="Snap an artifact, get a probable ID and timeline, and help archeologists uncover history—ethically and collaboratively."/>
+  <link rel="stylesheet" href="/css/index.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons & Manifest (optional placeholders) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🗿</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA"/>
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Digscord">
+
+  <!-- Open Graph (preview) -->
+  <meta property="og:title" content="Digscord - Archeology AI & Crowdsourcing">
+  <meta property="og:description" content="Identify artifacts with AI, collaborate with archeologists, and support ethical digs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA"/>
+  <meta property="og:url" content="https://example.com/digscord-demo">
+</head>
+<body>
+  <!-- Skip link -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <script src="/js/index.js"></script>
+  <!-- App header -->
+  <header class="app-header" role="banner">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🗿</div>
+      <h1 aria-label="Digscord">Digscord</h1>
+    </div>
+
+    <nav class="top-nav" aria-label="Primary">
+      <button onclick="movePage('index.html')" class="nav-btn" data-target="home" aria-controls="home">Home</button>
+      <button onclick="movePage('identify.html')" class="nav-btn" data-target="identify" aria-controls="identify">Identify</button>
+      <button onclick="movePage('collection.html')" class="nav-btn" data-target="collection" aria-controls="collection">Collection</button>
+      <button onclick="movePage()" class="nav-btn" data-target="filters" aria-controls="filters">Filters</button>
+      <button onclick="movePage()" class="nav-btn" data-target="map" aria-controls="map">Map</button>
+      <button onclick="movePage()" class="nav-btn" data-target="chat" aria-controls="chat">Chat</button>
+      <button onclick="movePage()" class="nav-btn" data-target="funding" aria-controls="funding">Funding</button>
+      <button onclick="movePage()" class="nav-btn" data-target="volunteer" aria-controls="volunteer">Volunteer</button>
+      <button onclick="movePage('trivia.html')" class="nav-btn" data-target="trivia" aria-controls="trivia">Trivia</button>
+      <button onclick="movePage()" class="nav-btn accent" data-target="auth" aria-controls="auth">Archeologist sign-in</button>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main id="main" role="main" tabindex="-1">
+    <!-- Home -->
+    <section id="home" class="view active" aria-labelledby="home-title">
+      <div class="hero">
+        <h2 id="home-title">Crowd-powered archeology meets AI</h2>
+        <p>Snap an artifact, get a probable ID and timeline, and help archeologists uncover history—ethically and collaboratively.</p>
+        <div class="cta-row">
+          <button class="primary" data-target="identify" aria-controls="identify">Identify artifact</button>
+          <button class="secondary" data-target="filters" aria-controls="filters">Explore recent finds</button>
+        </div>
+      </div>
+
+      <div class="legal-banner" role="note" aria-live="polite">
+        <strong>Important:</strong> Removal of artifacts from private or federal property may be illegal and could result in prosecution. Report, don’t remove. Respect local laws and tribal sovereignty.
+      </div>
+
+      <div class="stats" aria-label="Community stats">
+        <div class="stat" role="group" aria-label="Artifacts logged this week">
+          <span class="stat-value" id="stat-artifacts">0</span>
+          <span class="stat-label">Artifacts logged this week</span>
+        </div>
+        <div class="stat" role="group" aria-label="Potential dig sites flagged">
+          <span class="stat-value" id="stat-sites">0</span>
+          <span class="stat-label">Potential dig sites flagged</span>
+        </div>
+        <div class="stat" role="group" aria-label="Civilians contributing">
+          <span class="stat-value" id="stat-users">0</span>
+          <span class="stat-label">Civilians contributing</span>
+        </div>
+      </div>
+
+      <!-- Storyboard cards (for presentation) -->
+      <div class="grid" aria-label="Storyboard of Digscord flow">
+        <article class="card">
+          <h4>Hiker discovery</h4>
+          <p>The hiker finds an arrowhead and uses Digscord to snap a photo.</p>
+        </article>
+        <article class="card">
+          <h4>AI identification</h4>
+          <p>Digscord provides an ID, probable time period, and background info.</p>
+        </article>
+        <article class="card">
+          <h4>Ethical warning</h4>
+          <p>A legal warning reminds them not to remove artifacts from protected lands.</p>
+        </article>
+      </div>
+
+      <div class="grid" aria-label="Archeologist workflow steps">
+        <article class="card">
+          <h4>Archeologist registration</h4>
+          <p>Students verify with institution and graduation dates.</p>
+        </article>
+        <article class="card">
+          <h4>Filter criteria</h4>
+          <p>Search by artifact type, time period, and culture to find patterns.</p>
+        </article>
+        <article class="card">
+          <h4>Map and clustering</h4>
+          <p>View matches on the map with timestamps relative to known sites.</p>
+        </article>
+      </div>
+
+      <div class="grid" aria-label="Community engagement steps">
+        <article class="card">
+          <h4>Notifications</h4>
+          <p>Civilians who logged matching artifacts are notified.</p>
+        </article>
+        <article class="card">
+          <h4>Chat room</h4>
+          <p>Everyone collaborates; questions are asked and context gathered.</p>
+        </article>
+        <article class="card">
+          <h4>Funding & volunteering</h4>
+          <p>GoFundMe link is generated; volunteers can offer time.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Identify -->
+    <section id="identify" class="view" aria-labelledby="identify-title">
+      <h2 id="identify-title">Identify an artifact</h2>
+      <p>Upload a photo. Digscord's AI suggests an ID, probable time period, and background.</p>
+
+      <div class="upload-card">
+        <div class="upload-zone" id="uploadZone" role="button" aria-label="Upload zone" tabindex="0">
+          <input type="file" accept="image/*" id="artifactFile" hidden aria-hidden="true"/>
+          <button class="primary" id="choosePhoto" aria-controls="artifactFile">Choose photo</button>
+          <p class="muted">Or drag & drop an image here</p>
+        </div>
+        <img id="previewImg" alt="Artifact preview" class="preview-img" />
+      </div>
+
+      <button class="primary" id="runAiBtn" aria-describedby="identify-help">Run AI identification</button>
+      <p id="identify-help" class="muted">Results are simulated in this demo.</p>
+
+      <div class="ai-result" id="aiResult" aria-live="polite"></div>
+
+      <div class="legal-banner compact" role="note">
+        <strong>Heads up:</strong> Removing artifacts from protected lands is illegal. When in doubt, leave it in place and report the find.
+      </div>
+
+      <!-- Educational panel -->
+      <aside class="card" aria-label="Educational note">
+        <h4>Why leave artifacts in situ?</h4>
+        <p>Context tells the story: soil layers, proximity to other finds, and location all help archeologists reconstruct history.</p>
+      </aside>
+    </section>
+
+    <!-- Collection -->
+    <section id="collection" class="view" aria-labelledby="collection-title">
+      <h2 id="collection-title">My virtual collection</h2>
+      <p>Your identified artifacts are saved here with location and timestamps.</p>
+      <div class="grid" id="collectionGrid" aria-live="polite"></div>
+
+      <!-- Presentation: collection tips -->
+      <div class="card">
+        <h4>Documenting your finds</h4>
+        <ul>
+          <li><strong>Location:</strong> Note GPS coordinates accurately.</li>
+          <li><strong>Context:</strong> Describe soil, depth, and nearby features.</li>
+          <li><strong>Photos:</strong> Capture multiple angles with scale.</li>
+          <li><strong>Respect:</strong> Do not disturb the site; inform authorities if required.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section id="filters" class="view" aria-labelledby="filters-title">
+      <h2 id="filters-title">Filter artifacts</h2>
+      <p>Refine by type, time period, and culture to discover patterns and potential dig sites.</p>
+
+      <form id="filterForm" class="filter-form" aria-describedby="filters-help">
+        <div class="form-row">
+          <label for="typeSelect">Artifact type</label>
+          <select id="typeSelect">
+            <option value="">Any</option>
+            <option>Arrowhead</option>
+            <option>Pottery shard</option>
+            <option>Scraper</option>
+            <option>Spear point</option>
+            <option>Bead</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="cultureSelect">Culture</label>
+          <select id="cultureSelect">
+            <option value="">Any</option>
+            <option>Ancestral Puebloan</option>
+            <option>Hopewell</option>
+            <option>Mississippian</option>
+            <option>Clovis</option>
+            <option>Woodland</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="timeStart">Time period start (BCE/CE)</label>
+          <input id="timeStart" type="number" placeholder="e.g., -500"/>
+        </div>
+
+        <div class="form-row">
+          <label for="timeEnd">Time period end (BCE/CE)</label>
+          <input id="timeEnd" type="number" placeholder="e.g., 1200"/>
+        </div>
+
+        <div class="form-row">
+          <label for="locationQuery">Location keyword</label>
+          <input id="locationQuery" type="text" placeholder="e.g., DRSS address"/>
+        </div>
+
+        <button type="submit" class="primary">Apply filters</button>
+      </form>
+
+      <p id="filters-help" class="muted">Filter results are local mock data in this demo.</p>
+
+      <div class="results-meta" id="filterMeta" aria-live="polite"></div>
+      <div class="grid" id="filterResults"></div>
+
+      <!-- Suggested filters -->
+      <aside class="card">
+        <h4>Suggestions</h4>
+        <ul>
+          <li><strong>Time slice:</strong> Try narrowing to 500 BCE–200 CE.</li>
+          <li><strong>Culture focus:</strong> Hopewell or Woodland for Ohio Valley.</li>
+          <li><strong>Type:</strong> Arrowheads and scrapers often cluster near waterways.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Map (mock) -->
+    <section id="map" class="view" aria-labelledby="map-title">
+      <h2 id="map-title">Artifact map view</h2>
+      <p>Showing recent artifacts matching criteria with geolocation and timestamps.</p>
+
+      <div class="map-wrap">
+        <div id="mapCanvas" class="map-canvas" role="application" aria-label="Interactive artifact map"></div>
+        <div class="map-legend" aria-label="Legend">
+          <div><span class="dot dot-green" aria-hidden="true"></span> Match</div>
+          <div><span class="dot dot-orange" aria-hidden="true"></span> Under review</div>
+          <div><span class="dot dot-dark" aria-hidden="true"></span> Historical site</div>
+        </div>
+      </div>
+
+      <div id="mapList" class="map-list" aria-live="polite"></div>
+
+      <!-- Map tips -->
+      <div class="card">
+        <h4>Interpreting the map</h4>
+        <ul>
+          <li><strong>Clusters:</strong> Dense points may indicate a site.</li>
+          <li><strong>Timestamps:</strong> Sequence of finds helps verification.</li>
+          <li><strong>Context layers:</strong> Compare with modern construction maps.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section id="chat" class="view" aria-labelledby="chat-title">
+      <h2 id="chat-title">Digscord chat room</h2>
+      <p>A room is created for all civilians whose artifacts match the archeologist’s filter, plus the archeologist. Collaborate, ask questions, and share context.</p>
+
+      <div class="chat-room" role="region" aria-label="Collaboration room">
+        <div class="chat-header">
+          <div class="room-title">DRSS region — Arrowheads (500 BCE–1200 CE)</div>
+          <div class="room-actions">
+            <button class="secondary" id="notifyBtn">Notify contributors</button>
+            <button class="secondary" id="exportChatBtn">Export</button>
+          </div>
+        </div>
+
+        <div id="chatLog" class="chat-log" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+        <div class="chat-input" role="group" aria-label="Send a message">
+          <input id="chatMessage" type="text" placeholder="Type a message..." aria-label="Message text"/>
+          <button class="primary" id="sendChatBtn">Send</button>
+        </div>
+      </div>
+
+      <!-- Chat etiquette -->
+      <aside class="card">
+        <h4>Community etiquette</h4>
+        <ul>
+          <li><strong>Respect:</strong> Be kind and acknowledge differing perspectives.</li>
+          <li><strong>Detail:</strong> Provide context, not just photos.</li>
+          <li><strong>Privacy:</strong> Do not post exact coordinates publicly if sensitive.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Funding -->
+    <section id="funding" class="view" aria-labelledby="funding-title">
+      <h2 id="funding-title">GoFundMe integration (simulated)</h2>
+      <p>Set a goal and create a shareable funding link to support a dig. The archeologist controls the fund.</p>
+
+      <form id="fundForm" class="fund-form" aria-describedby="funding-help">
+        <div class="form-row">
+          <label for="fundTitle">Campaign title</label>
+          <input id="fundTitle" type="text" placeholder="DRSS Arrowhead Site Excavation"/>
+        </div>
+        <div class="form-row">
+          <label for="fundGoal">Funding goal (USD)</label>
+          <input id="fundGoal" type="number" placeholder="15000"/>
+        </div>
+        <div class="form-row">
+          <label for="fundDesc">Short description</label>
+          <textarea id="fundDesc" rows="3" placeholder="Community-backed excavation focusing on ethically documented finds..."></textarea>
+        </div>
+        <button type="submit" class="primary">Create funding link</button>
+      </form>
+
+      <p id="funding-help" class="muted">This demo generates a simulated link for presentation purposes.</p>
+
+      <div id="fundLinkWrap" class="fund-link-wrap" aria-live="polite"></div>
+
+      <!-- Funding guidance -->
+      <aside class="card">
+        <h4>Ethical funding</h4>
+        <ul>
+          <li><strong>Transparency:</strong> Share goals, budget, and oversight.</li>
+          <li><strong>Permissions:</strong> Ensure legal permits and tribal consultation.</li>
+          <li><strong>Reporting:</strong> Publish results and honor community involvement.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Volunteer -->
+    <section id="volunteer" class="view" aria-labelledby="volunteer-title">
+      <h2 id="volunteer-title">Volunteer interest</h2>
+      <p>Are you willing to help excavate if the site is selected? Sign up below.</p>
+
+      <form id="volForm" class="vol-form" aria-describedby="volunteer-help">
+        <div class="form-row">
+          <label for="volName">Name</label>
+          <input id="volName" type="text" placeholder="Your name"/>
+        </div>
+        <div class="form-row">
+          <label for="volEmail">Email</label>
+          <input id="volEmail" type="email" placeholder="name@example.com"/>
+        </div>
+        <div class="form-row">
+          <label for="volAvailability">Availability</label>
+          <select id="volAvailability">
+            <option>Weekends</option>
+            <option>Weekdays</option>
+            <option>Flexible</option>
+          </select>
+        </div>
+        <button type="submit" class="primary">Submit interest</button>
+      </form>
+
+      <p id="volunteer-help" class="muted">Volunteering is subject to permits, site conditions, and safety training.</p>
+
+      <div id="volThanks" class="vol-thanks" aria-live="polite"></div>
+
+      <!-- Volunteer FAQ -->
+      <details class="card">
+        <summary><strong>Volunteer FAQ</strong></summary>
+        <ul>
+          <li><strong>Training:</strong> Basic site safety and documentation methods provided.</li>
+          <li><strong>Duration:</strong> Typically half-day to multi-day sessions.</li>
+          <li><strong>Inclusivity:</strong> All ages welcome; minors require guardian consent.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- Trivia -->
+    <section id="trivia" class="view" aria-labelledby="trivia-title">
+      <h2 id="trivia-title">Archeology trivia</h2>
+      <p>Test your knowledge—power through the questions and learn as you go.</p>
+
+      <div id="triviaWrap" class="trivia-wrap" aria-live="polite">
+        <!-- Populated by JS -->
+      </div>
+      <div id="triviaScore" class="trivia-score" aria-live="polite"></div>
+      <button class="secondary" id="restartTriviaBtn">Restart trivia</button>
+
+      <!-- Trivia info -->
+      <aside class="card">
+        <h4>How scoring works</h4>
+        <p>Each correct answer increases your score. Explanations appear after you answer to help you learn.</p>
+      </aside>
+    </section>
+
+    <!-- Auth -->
+    <section id="auth" class="view" aria-labelledby="auth-title">
+      <h2 id="auth-title">Archeologist registration</h2>
+      <p>Verify your authenticity using your institution and graduation dates.</p>
+
+      <form id="authForm" class="auth-form" aria-describedby="auth-help">
+        <div class="form-row">
+          <label for="authName">Full name</label>
+          <input id="authName" type="text" placeholder="Jane Doe"/>
+        </div>
+        <div class="form-row">
+          <label for="authSchool">Institution</label>
+          <input id="authSchool" type="text" placeholder="University / College"/>
+        </div>
+        <div class="form-row">
+          <label for="authGradStart">Program start year</label>
+          <input id="authGradStart" type="number" placeholder="2021"/>
+        </div>
+        <div class="form-row">
+          <label for="authGradEnd">Expected graduation year</label>
+          <input id="authGradEnd" type="number" placeholder="2026"/>
+        </div>
+
+        <button type="submit" class="primary">Verify and sign in</button>
+      </form>
+
+      <p id="auth-help" class="muted">This demo performs a local mock verification only.</p>
+
+      <div id="authStatus" class="auth-status" aria-live="polite"></div>
+
+      <!-- Verification tips -->
+      <aside class="card">
+        <h4>Verification best practices</h4>
+        <ul>
+          <li><strong>Institutional email:</strong> Helps validate enrollment or alumni status.</li>
+          <li><strong>Program dates:</strong> Provide start/end to confirm current status.</li>
+          <li><strong>References:</strong> Faculty advisor may be requested for sensitive access.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Presentation-only sections (extended content for Part 1) -->
+    <section id="about" class="view" aria-labelledby="about-title">
+      <h2 id="about-title">About Digscord</h2>
+      <p>Digscord is a collaborative platform that unites civilians and archeologists to ethically document artifacts, identify potential sites, and support community-backed excavations.</p>
+      <div class="grid">
+        <article class="card">
+          <h4>Mission</h4>
+          <p>Respect the land, honor the past, and empower communities to participate in responsible archeology.</p>
+        </article>
+        <article class="card">
+          <h4>Approach</h4>
+          <p>Combine AI-assisted identification with crowdsourced observations and expert review.</p>
+        </article>
+        <article class="card">
+          <h4>Ethics</h4>
+          <p>Center indigenous perspectives, uphold legal standards, and protect sensitive sites.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="view" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently asked questions</h2>
+
+      <details class="card">
+        <summary><strong>Is this a real identification AI?</strong></summary>
+        <p>This demo simulates AI results. A production system would require trained models and expert validation.</p>
+      </details>
+
+      <details class="card">
+        <summary><strong>Do I need permission to log artifacts?</strong></summary>
+        <p>Logging observations is generally allowed, but collecting artifacts may be illegal on private or public lands without permits.</p>
+      </details>
+
+      <details class="card">
+        <summary><strong>How are sensitive locations handled?</strong></summary>
+        <p>Sensitive coordinates should be protected. Public sharing is limited to generalized regions.</p>
+      </details>
+
+      <details class="card">
+        <summary><strong>Can archeologists request more info?</strong></summary>
+        <p>Yes. Chat rooms connect archeologists and civilians to gather context before site visits.</p>
+      </details>
+
+      <details class="card">
+        <summary><strong>How are funds managed?</strong></summary>
+        <p>Archeologists control campaigns and must meet legal and ethical standards for excavation.</p>
+      </details>
+    </section>
+
+    <section id="legal" class="view" aria-labelledby="legal-title">
+      <h2 id="legal-title">Legal & ethical</h2>
+      <div class="card">
+        <h4>Core guidance</h4>
+        <ul>
+          <li><strong>Non-removal:</strong> Leave artifacts where found unless explicitly permitted.</li>
+          <li><strong>Reporting:</strong> Notify authorities when appropriate.</li>
+          <li><strong>Sovereignty:</strong> Respect tribal lands and community leadership.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Templates & reusable components (for JS to clone) -->
+    <section aria-label="Templates" class="view" id="templates">
+      <template id="artifact-card-template">
+        <div class="card">
+          <h4 class="artifact-title"></h4>
+          <p class="muted artifact-period"></p>
+          <p class="artifact-location"></p>
+          <p class="muted artifact-timestamp"></p>
+          <div class="cta-row">
+            <button class="secondary add-chat-btn">Add to chat room</button>
+          </div>
+        </div>
+      </template>
+
+      <template id="chat-message-template">
+        <div class="chat-msg">
+          <strong class="msg-from"></strong>: <span class="msg-text"></span>
+        </div>
+      </template>
+
+      <template id="map-item-template">
+        <div class="map-item">
+          <div><strong class="mi-type"></strong> — <span class="mi-culture"></span></div>
+          <div class="muted mi-period"></div>
+          <div class="mi-location"></div>
+          <div class="muted mi-time"></div>
+        </div>
+      </template>
+
+      <template id="trivia-question-template">
+        <div class="trivia-q">
+          <div><strong class="tq-index"></strong> <span class="tq-text"></span></div>
+          <div class="trivia-answers"></div>
+          <div class="muted tq-instruction">Tap an answer to reveal feedback.</div>
+        </div>
+      </template>
+    </section>
+
+    <!-- Modals -->
+    <section aria-label="Modals region">
+      <!-- Identification summary -->
+      <div class="modal" id="summaryModal" role="dialog" aria-modal="true" aria-labelledby="summary-title">
+        <div class="modal-content">
+          <h3 id="summary-title">Identification summary</h3>
+          <div id="summaryBody"></div>
+          <div class="modal-actions">
+            <button class="secondary" id="closeSummaryBtn">Close</button>
+            <button class="primary" id="addToCollectionBtn">Add to collection</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="modal" id="notifyModal" role="dialog" aria-modal="true" aria-labelledby="notify-title">
+        <div class="modal-content">
+          <h3 id="notify-title">Contributor notifications</h3>
+          <p>Digscord notified civilians whose artifacts matched your filter. They can join the chat and share more context.</p>
+          <div id="notifyList"></div>
+          <div class="modal-actions">
+            <button class="primary" id="closeNotifyBtn">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Chat -->
+      <div class="modal" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="export-title">
+        <div class="modal-content">
+          <h3 id="export-title">Export chat</h3>
+          <textarea id="exportText" rows="10" aria-label="Chat export text"></textarea>
+          <div class="modal-actions">
+            <button class="secondary" id="closeExportBtn">Close</button>
+            <button class="primary" id="copyExportBtn">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Extended presentation placeholders to reach large file size (safe markup) -->
+    <section id="presentation" class="view" aria-labelledby="presentation-title">
+      <h2 id="presentation-title">Presentation annex</h2>
+      <p>This section contains extended content and structured placeholders helpful for large-scale demos, pitch decks, and scripted walkthroughs.</p>
+
+      <!-- Multi-column content grids -->
+      <div class="grid">
+        <article class="card">
+          <h4>User journey: civilian</h4>
+          <ol>
+            <li><strong>Discovery:</strong> Finds an artifact.</li>
+            <li><strong>Capture:</strong> Takes a photo in-app.</li>
+            <li><strong>AI assist:</strong> Receives suggested ID and context.</li>
+            <li><strong>Ethics:</strong> Sees a non-removal advisory.</li>
+            <li><strong>Contribution:</strong> Adds to virtual collection.</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h4>User journey: archeologist</h4>
+          <ol>
+            <li><strong>Verification:</strong> Registers as a verified archeologist.</li>
+            <li><strong>Filtering:</strong> Applies criteria by type, culture, and time period.</li>
+            <li><strong>Mapping:</strong> Studies geospatial clusters.</li>
+            <li><strong>Engagement:</strong> Opens chat room and notifies contributors.</li>
+            <li><strong>Planning:</strong> Creates funding and volunteer opportunities.</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h4>Outcomes</h4>
+          <ul>
+            <li><strong>Data:</strong> Crowdsourced initial survey improves grant viability.</li>
+            <li><strong>Community:</strong> Civilians learn and contribute ethically.</li>
+            <li><strong>Sites:</strong> Potential excavation sites verified more efficiently.</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- Long-form narrative -->
+      <article class="card">
+        <h4>Scenario narrative</h4>
+        <p>A hiker stumbles upon an arrowhead glinting in soft light after a rainstorm. Curious but cautious, they open Digscord, snap a clear photo with scale, and within moments the app suggests a likely classification. A warning banner reminds them: leave it in place, document context, respect laws. The artifact joins their virtual collection, anchoring a memory to a geographically grounded observation. Days later, a verified archeology student narrows filters to the same type and time range. The Digscord map reveals a neat cluster around the DRSS address. The student notifies contributors, opens a chat, and begins gathering details about soil strata and distances to waterways. A community fund springs up, a volunteer roster grows, and with initial survey notes crowd-sourced, a university grant is approved. The dig commences—with clear permits, respect for tribal sovereignty, and the local community invited to witness the unfolding story beneath their feet.</p>
+      </article>
+
+      <!-- Content blocks for large demo -->
+      <div class="grid">
+        <article class="card">
+          <h4>Design principles</h4>
+          <ul>
+            <li><strong>Clarity:</strong> Clean typography and accessible UI.</li>
+            <li><strong>Contrast:</strong> Strong palette for legibility outdoors.</li>
+            <li><strong>Calm:</strong> Soft gradients and reassuring tone.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Technical pillars</h4>
+          <ul>
+            <li><strong>AI assistance:</strong> Model-driven suggestions with expert review.</li>
+            <li><strong>Geospatial:</strong> Map overlays, time stamping, clustering.</li>
+            <li><strong>Community:</strong> Notifications, chat, funding, volunteering.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Responsible archeology</h4>
+          <ul>
+            <li><strong>In situ:</strong> Leave artifacts in place.</li>
+            <li><strong>Consultation:</strong> Engage indigenous communities.</li>
+            <li><strong>Compliance:</strong> Obey permit laws and ethical standards.</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- Placeholder repeated sections (safe content) -->
+      <section aria-label="Extended placeholders A">
+        <div class="grid">
+          <article class="card">
+            <h4>Field notes template</h4>
+            <p>Use this template to record soil layers, artifacts, and environmental observations during initial surveys.</p>
+          </article>
+          <article class="card">
+            <h4>Photography checklist</h4>
+            <ul>
+              <li><strong>Scale:</strong> Include a ruler or coin.</li>
+              <li><strong>Angles:</strong> Capture top, side, and edge views.</li>
+              <li><strong>Lighting:</strong> Avoid harsh shadows; diffuse if possible.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h4>Safety practices</h4>
+            <ul>
+              <li><strong>Permits:</strong> Verify permissions before any work.</li>
+              <li><strong>Gear:</strong> Wear gloves and protective eyewear when needed.</li>
+              <li><strong>Boundaries:</strong> Respect closed areas and sensitive sites.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section aria-label="Extended placeholders B">
+        <div class="grid">
+          <article class="card">
+            <h4>Community engagement ideas</h4>
+            <p>Host weekend walk-throughs, share findings responsibly, and invite local schools for educational visits.</p>
+          </article>
+          <article class="card">
+            <h4>Grant writing tips</h4>
+            <ul>
+              <li><strong>Evidence:</strong> Include crowdsourced survey and timestamps.</li>
+              <li><strong>Budget:</strong> Clarify line items and community support.</li>
+              <li><strong>Impact:</strong> Emphasize public education and preservation.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h4>Post-dig reporting</h4>
+            <p>Publish summaries, anonymize sensitive data, and share educational materials with the community.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Large table placeholder (non-data, for layout testing) -->
+      <section aria-label="Layout test table">
+        <div class="card" role="region" aria-label="Layout test">
+          <h4>Layout test: responsive table (placeholder)</h4>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Section</th>
+                  <th>Purpose</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Identify</td>
+                  <td>Capture and AI suggestion</td>
+                  <td>Mocked in demo</td>
+                </tr>
+                <tr>
+                  <td>Collection</td>
+                  <td>Personal archive</td>
+                  <td>Local storage in demo</td>
+                </tr>
+                <tr>
+                  <td>Filters</td>
+                  <td>Search parameters</td>
+                  <td>Type/culture/time/location</td>
+                </tr>
+                <tr>
+                  <td>Map</td>
+                  <td>Geospatial overview</td>
+                  <td>Pins and clustering</td>
+                </tr>
+                <tr>
+                  <td>Chat</td>
+                  <td>Collaboration</td>
+                  <td>Notifications and export</td>
+                </tr>
+                <tr>
+                  <td>Funding</td>
+                  <td>Campaign creation</td>
+                  <td>Simulated link</td>
+                </tr>
+                <tr>
+                  <td>Volunteer</td>
+                  <td>Interest intake</td>
+                  <td>Basic form</td>
+                </tr>
+                <tr>
+                  <td>Trivia</td>
+                  <td>Education</td>
+                  <td>Interactive quiz</td>
+                </tr>
+                <tr>
+                  <td>Auth</td>
+                  <td>Verification</td>
+                  <td>Mock validation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer" role="contentinfo">
+    <div>© Digscord – Respect the land. Honor the past. Empower the future.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+
+  <!--
+    End of part 1 (index.html)
+    Part 2: styles.css (design system, utilities, animations)
+    Part 3: app.js (features, data, trivia bank)
+  -->
+</body>
+</html>

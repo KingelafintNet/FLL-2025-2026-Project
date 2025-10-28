@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digscord — Collection</title>
+    <link rel="stylesheet" href="collection.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">🗿</div>
+      <h1>Digscord</h1>
+    </div>
+    <nav class="top-nav">
+      <a class="nav-btn" href="index.html">Home</a>
+      <a class="nav-btn" href="identify.html">Identify</a>
+      <a class="nav-btn accent" href="collections.html" aria-current="page">Collection</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="view collection" aria-labelledby="collection-title">
+      <h2 id="collection-title">My Virtual Collection</h2>
+      <p>Your identified artifacts are saved here with location and timestamps.</p>
+
+      <div class="actions">
+        <button class="btn primary" id="addMockBtn">Add mock artifact</button>
+        <button class="btn secondary" id="clearBtn">Clear collection</button>
+      </div>
+
+      <div id="collectionGrid" class="grid" aria-live="polite"></div>
+
+      <aside class="card">
+        <h3>Collection tips</h3>
+        <ul>
+          <li><strong>Location:</strong> Note GPS coordinates accurately.</li>
+          <li><strong>Context:</strong> Describe soil, depth, and nearby features.</li>
+          <li><strong>Photos:</strong> Capture multiple angles with scale.</li>
+          <li><strong>Respect:</strong> Do not disturb the site; inform authorities if required.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div>© Digscord – Respect the land. Honor the past. Empower the future.</div>
+  </footer>
+
+  <script src="collections.js"></script>
+</body>
+</html>

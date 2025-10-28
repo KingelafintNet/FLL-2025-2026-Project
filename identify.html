@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digscord — Identify</title>
+  <link rel="stylesheet" href="identify.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🗿</div>
+      <h1>Digscord</h1>
+    </div>
+    <nav class="top-nav" aria-label="Primary">
+      <a class="nav-btn" href="./collection.html">Collection</a> 
+      <a class="nav-btn" href="./index.html">Home</a>
+      <a class="nav-btn" href="./identify.html">Identify</a>
+      <a class="nav-btn accent" href="./identify.html" aria-current="page">Identify</a>
+    </nav>
+  </header>
+  
+
+  <main class="container">
+    <section class="view identify" aria-labelledby="identify-title">
+      <h2 id="identify-title">Identify an artifact</h2>
+      <p>Upload a photo. Digscord’s AI suggests an ID, probable time period, and background.</p>
+
+      <div class="upload-card">
+        <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Upload zone">
+          <input type="file" accept="image/*" id="artifactFile" hidden aria-hidden="true"/>
+          <button class="btn primary" id="choosePhoto" aria-controls="artifactFile">Choose photo</button>
+          <p class="muted">Or drag & drop an image here</p>
+        </div>
+
+        <figure class="preview">
+          <img id="previewImg" alt="Artifact preview" class="preview-img"/>
+          <figcaption id="previewCaption" class="muted"></figcaption>
+        </figure>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="runAiBtn" aria-describedby="identify-help">Run AI identification</button>
+        <button class="btn secondary" id="clearBtn">Clear</button>
+      </div>
+      <p id="identify-help" class="muted">Results are simulated for this demo.</p>
+
+      <div class="ai-result" id="aiResult" aria-live="polite"></div>
+
+      <div class="legal-banner">
+        <strong>Heads up:</strong> Removing artifacts from protected lands is illegal. Leave items in situ and report responsibly.
+      </div>
+
+      <aside class="card">
+        <h3>Tips for a good photo</h3>
+        <ul class="tips">
+          <li><strong>Scale:</strong> Include a ruler or coin.</li>
+          <li><strong>Angles:</strong> Shoot top, side, and edge views.</li>
+          <li><strong>Lighting:</strong> Use diffuse light; avoid harsh shadows.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Summary modal -->
+  <div class="modal" id="summaryModal" role="dialog" aria-modal="true" aria-labelledby="summary-title">
+    <div class="modal-content">
+      <h3 id="summary-title">Identification summary</h3>
+      <div id="summaryBody"></div>
+      <div class="modal-actions">
+        <button class="btn secondary" id="closeSummaryBtn">Close</button>
+        <button class="btn primary" id="addToCollectionBtn">Add to collection</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div>© Digscord – Respect the land. Honor the past. Empower the future.</div>
+  </footer>
+
+  <script src="identify.js"></script>
+</body>
+</html>
