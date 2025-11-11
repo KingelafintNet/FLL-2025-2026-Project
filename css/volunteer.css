@@ -1,0 +1,46 @@
+:root {
+    --cream: #FAFAC8;
+    --tea-green: #C9E3AC;
+    --pistachio: #90BE6D;
+    --carrot-orange: #EA9010;
+    --dark-brown: #37371F;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: var(--cream);
+    color: var(--dark-brown);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--pistachio);
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-btn { background: var(--tea-green); padding: 0.5rem 0.9rem; border-radius: 6px; text-decoration: none; color: inherit; font-weight: 600; }
+  .nav-btn:hover, .nav-btn.active { background: var(--carrot-orange); color: white; }
+  .sign-btn { background: var(--tea-green); padding: 0.5rem 0.9rem; border-radius: 6px; text-decoration: none; color: inherit; }
+  .sign-btn.alt { background: var(--carrot-orange); color: white; }
+  
+  .volunteer-container { flex: 1; max-width: 700px; margin: 2rem auto; padding: 1rem; }
+  #search-input { width: 100%; padding: 0.7rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--dark-brown); background: var(--tea-green); font-size: 1rem; }
+  .volunteer-list { list-style: none; padding: 0; }
+  .volunteer-list li { margin-bottom: 0.75rem; }
+  .volunteer-list a { display: block; background: var(--carrot-orange); padding: 0.75rem 1rem; border-radius: 8px; text-decoration: none; color: white; font-weight: bold; transition: background 0.2s ease; }
+  .volunteer-list a:hover { background: #d67f0c; }
+  
+  .signup-form { margin-top: 2rem; background: var(--tea-green); padding: 1rem; border-radius: 8px; }
+  .signup-form input, .signup-form select { width: 100%; padding: 0.7rem; margin-bottom: 0.5rem; border-radius: 6px; border: 1px solid var(--dark-brown); }
+  #signup-btn { background: var(--carrot-orange); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold; cursor: pointer; }
+  #signup-btn:hover { background: #d67f0c; }
+  
+  .map-box, .leaderboard { margin-top: 2rem; background: var(--tea-green); padding: 1rem; border-radius: 8px; }
+  .site-footer { background: var(--dark-brown); color: var(--cream); text-align: center; padding: 1rem; }
+  

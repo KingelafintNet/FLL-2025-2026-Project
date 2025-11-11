@@ -1,84 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Archaeology Trivia</title>
-  <link rel="stylesheet" href="trivia.css"/>
+  <title>Trivia | Digscord</title>
+  <link rel="stylesheet" href="/css/trivia.css"/>
 </head>
 <body>
-  <!-- Blank nav bar (no links/content), colored C9E3AC -->
-  <nav class="app-nav" aria-label="Main navigation"></nav>
-  <a class="nav-btn" href="index.html">Home</a>
-  <a class="nav-btn" href="identify.html">Identify</a>
-  <a class="nav-btn accent" href="trivia.html" aria-current="page">Trivia</a>
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🎒</span>
+      <span class="brand">Digscord</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="collection.html" class="nav-btn">Collection</a>
+      <a href="filters.html" class="nav-btn">Filters</a>
+      <a href="map.html" class="nav-btn">Map</a>
+      <a href="chat.html" class="nav-btn">Chat</a>
+      <a href="funding.html" class="nav-btn">Funding</a>
+      <a href="volunteer.html" class="nav-btn">Volunteer</a>
+      <a href="trivia.html" class="nav-btn active">Trivia</a>
+      <a href="identify.html" class="nav-btn">Identify</a>
+    </nav>
+  </header>
 
-  <main class="container">
-    <header class="header">
-      <h1>Archaeology Trivia</h1>
-      <p class="subtitle">Test your knowledge across three difficulty levels.</p>
-    </header>
+  <main class="trivia-container">
+    <h2>Trivia Time 🏺</h2>
 
-    <section class="controls">
-      <div class="control-group">
-        <label for="difficulty"><span class="label">Difficulty:</span></label>
-        <select id="difficulty">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
+    <div class="setup-box">
+      <span class="label">Difficulty:</span>
+      <button class="level-btn active" data-level="easy">Easy</button>
+      <button class="level-btn" data-level="normal">Normal</button>
+      <button class="level-btn" data-level="hard">Hard</button>
+      <button id="start-btn">Start Quiz</button>
+    </div>
 
-      <div class="control-group">
-        <label for="questionCount"><span class="label">Questions:</span></label>
-        <select id="questionCount">
-          <option value="5">5</option>
-          <option value="10" selected>10</option>
-          <option value="15">15</option>
-        </select>
-      </div>
+    <div id="hud" class="hud">
+      <p id="progress-display"></p>
+      <p id="score-display"></p>
+      <p id="timer-display"></p>
+    </div>
 
-      <button id="startBtn" class="btn primary">Start game</button>
-      <button id="resetBtn" class="btn outline" disabled>Reset</button>
-    </section>
-
-    <section id="game" class="game hidden" aria-live="polite">
-      <div class="status-bar">
-        <div class="status-item"><strong>Question:</strong> <span id="qIndex">0</span>/<span id="qTotal">0</span></div>
-        <div class="status-item"><strong>Score:</strong> <span id="score">0</span></div>
-        <div class="status-item"><strong>Difficulty:</strong> <span id="diffLabel">Easy</span></div>
-      </div>
-
-      <div id="questionCard" class="card">
-        <h2 id="questionText">Question will appear here</h2>
-        <ul id="answers" class="answers" role="list"></ul>
-      </div>
-
-      <div class="feedback" id="feedback" aria-live="assertive"></div>
-
-      <div class="actions">
-        <button id="nextBtn" class="btn secondary" disabled>Next</button>
-        <button id="finishBtn" class="btn warn hidden">Finish</button>
-      </div>
-    </section>
-
-    <section id="summary" class="summary hidden">
-      <div class="card summary-card">
-        <h2>Game summary</h2>
-        <p><strong>Total questions:</strong> <span id="sumTotal">0</span></p>
-        <p><strong>Correct answers:</strong> <span id="sumCorrect">0</span></p>
-        <p><strong>Accuracy:</strong> <span id="sumAccuracy">0%</span></p>
-        <div class="summary-actions">
-          <button id="playAgainBtn" class="btn primary">Play again</button>
-        </div>
-      </div>
-    </section>
+    <div id="question-box" class="question-box">
+      <p id="question-text">Choose a difficulty and press Start.</p>
+      <div id="choices" class="choices"></div>
+      <p id="feedback"></p>
+      <button id="next-btn" class="control-btn">Next Question</button>
+      <button id="reset-btn" class="control-btn">Reset Quiz</button>
+    </div>
   </main>
 
-  <footer class="footer">
-    <small>Archaeology Trivia • Built with HTML, CSS, and JS</small>
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
   </footer>
 
-  <script src="trivia.js"></script>
+  <script src="/js/trivia.js"></script>
 </body>
 </html>

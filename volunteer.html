@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volunteer | Digscord</title>
+  <link rel="stylesheet" href="/css/volunteer.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <span class="icon">🎒</span>
+      <span class="brand">Digscord</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="collection.html" class="nav-btn">Collection</a>
+      <a href="filters.html" class="nav-btn">Filters</a>
+      <a href="map.html" class="nav-btn">Map</a>
+      <a href="chat.html" class="nav-btn">Chat</a>
+      <a href="funding.html" class="nav-btn">Funding</a>
+      <a href="volunteer.html" class="nav-btn active">Volunteer</a>
+      <a href="identify.html" class="nav-btn">Identify</a>
+      <a href="trivia.html" class="nav-btn">Trivia</a>
+    </nav>
+    <div class="sign-in">
+      <a href="visitor.html" class="sign-btn">Visitor sign-in</a>
+      <a href="arch.html" class="sign-btn alt">Archeologist sign-in</a>
+    </div>
+  </header>
+
+  <main class="volunteer-container">
+    <h2>Volunteer Opportunities 🤝</h2>
+
+    <!-- Search -->
+    <input type="text" id="search-input" placeholder="🔎 Search opportunities..." />
+
+    <!-- Opportunities -->
+    <ul id="volunteer-list" class="volunteer-list"></ul>
+
+    <!-- Sign-up form -->
+    <div class="signup-form">
+      <h3>Join the Digscord Volunteer Network</h3>
+      <input type="text" id="name" placeholder="Your Name"/>
+      <input type="email" id="email" placeholder="Your Email"/>
+      <select id="role">
+        <option value="Archaeologist">Archaeologist</option>
+        <option value="Student">Student</option>
+        <option value="Educator">Educator</option>
+        <option value="Enthusiast">Enthusiast</option>
+      </select>
+      <button id="signup-btn">Sign Up</button>
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="map-box">
+      <h3>Active Digs & Heritage Sites 🌍</h3>
+      <p>[Interactive map integration goes here]</p>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="leaderboard">
+      <h3>Top Volunteers 🏆</h3>
+      <ul id="leaderboard-list"></ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Digscord | Knowledge through curiosity</p>
+  </footer>
+
+  <script src="/js/volunteer.js"></script>
+</body>
+</html>

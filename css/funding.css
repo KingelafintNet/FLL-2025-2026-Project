@@ -1,5 +1,5 @@
 :root {
-  --cream: #EAEFBD;
+  --cream: #FAFAC8;
   --tea-green: #C9E3AC;
   --pistachio: #90BE6D;
   --carrot-orange: #EA9010;
@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
 }
 
+/* Header */
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -31,11 +32,7 @@ body {
   font-size: 1.5rem;
 }
 .logo .icon { margin-right: 0.5rem; }
-.nav {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
+.nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .nav-btn {
   background: var(--tea-green);
   padding: 0.5rem 0.9rem;
@@ -44,14 +41,11 @@ body {
   color: inherit;
   font-weight: 600;
 }
-.nav-btn:hover {
+.nav-btn:hover, .nav-btn.active {
   background: var(--carrot-orange);
   color: white;
 }
-.sign-in {
-  display: flex;
-  gap: 0.5rem;
-}
+.sign-in { display: flex; gap: 0.5rem; }
 .sign-btn {
   background: var(--tea-green);
   padding: 0.5rem 0.9rem;
@@ -59,11 +53,9 @@ body {
   text-decoration: none;
   color: inherit;
 }
-.sign-btn.alt {
-  background: var(--carrot-orange);
-  color: white;
-}
+.sign-btn.alt { background: var(--carrot-orange); color: white; }
 
+/* Funding */
 .funding-container {
   flex: 1;
   max-width: 700px;
@@ -92,18 +84,19 @@ body {
 }
 .funding-list a {
   display: block;
-  background: var(--tea-green);
+  background: var(--carrot-orange);
   padding: 0.75rem 1rem;
   border-radius: 8px;
   text-decoration: none;
-  color: var(--dark-brown);
+  color: white;
   font-weight: bold;
   transition: background 0.2s ease;
 }
 .funding-list a:hover {
-  background: var(--pistachio);
+  background: #d67f0c;
 }
 
+/* Suggest form */
 .suggest-form {
   margin-top: 2rem;
 }
@@ -111,19 +104,19 @@ body {
   margin-bottom: 0.5rem;
 }
 #suggest-input {
-  width: 100%;
+  width: 70%;
   padding: 0.7rem;
   border-radius: 8px;
   border: 1px solid var(--dark-brown);
   background: var(--tea-green);
   font-size: 1rem;
-  margin-bottom: 0.5rem;
 }
 #suggest-btn {
+  margin-left: 0.5rem;
   background: var(--carrot-orange);
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.2rem;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
@@ -132,6 +125,7 @@ body {
   background: #d67f0c;
 }
 
+/* Footer */
 .site-footer {
   background: var(--dark-brown);
   color: var(--cream);
