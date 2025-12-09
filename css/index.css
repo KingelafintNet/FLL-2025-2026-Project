@@ -61,7 +61,7 @@ body {
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: top;
 }
 .nav-btn:hover, .nav-btn.active { background: var(--accent-3); color: #fff; }
