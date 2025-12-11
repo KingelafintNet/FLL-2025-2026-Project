@@ -16,6 +16,14 @@ body {
   min-height: 100vh;
 }
 
+.logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -32,6 +40,8 @@ body {
   text-decoration: none;
   color: inherit;
   font-weight: 600;
+  justify-content: space-around;
+  align-items: top;
 }
 .nav-btn:hover { background: var(--carrot-orange); color: white; }
 .sign-in { display: flex; gap: 0.5rem; }

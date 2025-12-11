@@ -45,6 +45,15 @@ body {
   background: var(--carrot-orange);
   color: white;
 }
+
+.logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
 .sign-in { display: flex; gap: 0.5rem; }
 .sign-btn {
   background: var(--tea-green);
