@@ -1,0 +1,15 @@
+@charset "uft-8";
+
+body{
+    background-color: #FAFAC8;    
+}
+
+.backbutton{
+    background: var(--tea-green);
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    align-items: center;
+}
