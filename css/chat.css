@@ -13,3 +13,8 @@ body{
     font-weight: 600;
     align-items: center;
 }
+
+p{
+    font-size: 55px;
+    text-align: center;
+}
