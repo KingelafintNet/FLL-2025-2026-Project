@@ -11,21 +11,20 @@
   <header class="site-header">
     <div class="logo">
       <img src="images/digscord.jpg" alt="logo" height="200px" width="300px"> 
-      <span class="brand">Digscord 1.1.5</span>
+      <span class="brand">Digscord 1.2.4</span>
     </div>
     <nav class="nav">
-      <button onclick="movePage('index.html')" class="nav-btn" data-target="home" aria-controls="home">Home</button>
-      <button onclick="movePage('identify.html')" class="nav-btn" data-target="identify" aria-controls="identify">Identify</button>
-      <button onclick="movePage('collection.html')" class="nav-btn" data-target="collection" aria-controls="collection">Collection</button>
-      <button onclick="movePage('filters.html')" class="nav-btn" data-target="filters" aria-controls="filters">Filters</button>
-      <button onclick="movePage('map.html')" class="nav-btn" data-target="map" aria-controls="map">Map</button>
-      <button onclick="movePage('chat.html')" class="nav-btn" data-target="chat" aria-controls="chat">Chat</button>
-      <button onclick="movePage('funding.html')" class="nav-btn" data-target="funding" aria-controls="funding">Funding</button>
-      <button onclick="movePage('volunteer.html')" class="nav-btn" data-target="volunteer" aria-controls="volunteer">Volunteer</button>
-      <button onclick="movePage('trivia.html')" class="nav-btn" data-target="trivia" aria-controls="trivia">Trivia</button>
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="collection.html" class="nav-btn">Collection</a>
+      <a href="filters.html" class="nav-btn">Filters</a>
+      <a href="map.html" class="nav-btn">Map</a>
+      <a href="chat.html" class="nav-btn">Chat</a>
+      <a href="funding.html" class="nav-btn">Funding</a>
+      <a href="volunteer.html" class="nav-btn active">Volunteer</a>
+      <a href="identify.html" class="nav-btn">Identify</a>
+      <a href="trivia.html" class="nav-btn">Trivia</a>
     </nav>
     <div class="sign-in">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSjKHGWZcSWfj5bnEtJ9Kbt0pMjLb2gdEmBhG3Jf6KgCH7yw/viewform">Give us feedback on our app!</a>	
       <button onclick="movePage('visitor.html')" class="sign-btn">Visitor sign-in</button>
       <button onclick="movePage('arch.html')" class="sign-btn alt">Archeologist sign-in</button>
     </div>
@@ -36,14 +35,22 @@
     <h1>Crowd-powered archaeology meets AI</h1>
     <p>Snap an artifact, get a probable ID and timeline, and help archaeologists uncover history — ethically and collaboratively.</p>
     <div class="cta-row">
-      <button onclick="movePage('identify.html')" class="cta">Identify artifact</button>
-      <button onclick="movePage('recent.html')" class="cta ghost">Explore recent finds</button>
+      <a href="identify.html" class="nav-btn">Identify an artifact</a>
+    </div>
+    <div id="about">
+     </br>
+     </br>
+      <p id="subheading">About digscord</p>
+      <p>Digscord is a coding project for an First Lego Leauge team, called the Brick Busters who are based from Dayton Ohio.
+         The main theme for our FLL team this year is <strong>Archaeology</strong>. also if you are intrested     <a href="https://www.youtube.com/@BrickBustersFLL" >Check our youtube!</a>.
+          We also have a <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSjKHGWZcSWfj5bnEtJ9Kbt0pMjLb2gdEmBhG3Jf6KgCH7yw/viewform">Feedback Link</a> if you are interested.	</p>
     </div>
   </section>
 
   <!-- Warning -->
   <section class="warning">
-    <strong>Important:</strong> Removal of artifacts from private or federal property may be illegal and could result in prosecution. Report, don’t remove. Respect local laws and tribal sovereignty.
+    <strong>Important:</strong> Removal of artifacts from private or federal property may be illegal and could result in prosecution. Report, don’t remove.
+     Respect local laws and tribal sovereignty.
   </section>
 
   <!-- Stats + Info -->
