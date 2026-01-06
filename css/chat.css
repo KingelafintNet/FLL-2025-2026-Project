@@ -17,4 +17,27 @@ body{
 p{
     font-size: 55px;
     text-align: center;
+    color: #EA9010;
+    font-style: normal;
+    display: block;
+}
+
+.logo {
+    display: flex;
+    align-self: center;
+    gap: 0.5rem;
+  }
+
+  .hero {
+    background: 90BE6D;
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 3px 10px var(--shadow);
+    margin-bottom: 2.5rem;
+  }
+
+br{
+    border: #90BE6D;
+    border-style: solid;
 }
