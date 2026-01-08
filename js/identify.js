@@ -1,107 +1,29 @@
-// Grab elements
-const cameraBtn = document.getElementById("camera-btn");
-const uploadBtn = document.getElementById("upload-btn");
-const cameraInput = document.getElementById("camera-input");
-const fileInput = document.getElementById("file-input");
-const preview = document.getElementById("preview");
-const resultBox = document.getElementById("result");
+// -----------------------------
+// START CAMERA
+// -----------------------------
+const video = document.getElementById("camera-stream");
+const canvas = document.getElementById("photo-canvas");
+const captureBtn = document.getElementById("capture-btn");
 
-// Trigger hidden inputs
-cameraBtn.addEventListener("click", () => cameraInput.click());
-uploadBtn.addEventListener("click", () => fileInput.click());
-
-document.getElementById("capture-btn").addEventListener("click", () => {
-  getLocation((coords) => {
-    const canvas = document.getElementById("photo-canvas");
-    const imageData = canvas.toDataURL("image/png");
-
-    fetch("/upload-photo", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        image: imageData,
-        lat: coords.lat,
-        lng: coords.lng
-      })
-    });
-  });
-});
-
-// Handle file selection (camera or upload)
-[cameraInput, fileInput].forEach(input => {
-  input.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      function getLocation(callback) {
-        if (!navigator.geolocation) {
-          alert("Geolocation not supported");
-          return;
-        }
-      
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            callback({
-              lat: pos.coords.latitude,
-              lng: pos.coords.longitude
-            });
-          },
-          () => alert("Unable to retrieve location")
-        );
-      }      
-      // Show preview
-      preview.src = URL.createObjectURL(file);
-      preview.style.display = "block";
-
-      // Analyze with backend
-      analyzeImage(file);
-    }
-  });
-});
-
-// Send image to backend for Google Vision analysis
-async function analyzeImage(file) {
-  resultBox.innerHTML = "<p>🔎 Analyzing artifact...</p>";
-
+// Turn on the camera
+async function startCamera() {
   try {
-    // Convert file to base64
-    const base64Data = await toBase64(file);
-
-    // Send to backend
-    const response = await fetch("http://localhost:5000/analyze", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ image: base64Data })
-    });
-
-    if (!response.ok) throw new Error("Server error");
-
-    const data = await response.json();
-
-    if (data.labels && data.labels.length > 0) {
-      resultBox.innerHTML = `
-        <h3>Results:</h3>
-        <ul>
-          ${data.labels.map(label => `<li>${label}</li>`).join("")}
-        </ul>
-      `;
-    } else {
-      resultBox.innerHTML = "<p>No labels detected.</p>";
-    }
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    video.srcObject = stream;
   } catch (err) {
-    console.error(err);
-    resultBox.innerHTML = "<p>❌ Error analyzing image. Check backend connection.</p>";
+    alert("Camera access denied or unavailable.");
   }
 }
 
-// Helper: convert file to base64
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result.split(",")[1]);
-    reader.onerror = error => reject(error);
-  });
-}
-if (page === "map") {
-  pageContent.innerHTML = '<iframe src="map.html" style="width:100%;height:600px;border:none;"></iframe>';
-}
+startCamera();
+
+// -----------------------------
+// CAPTURE PHOTO
+// -----------------------------
+captureBtn.addEventListener("click", () => {
+  const context = canvas.getContext("2d");
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Optional: show a message or do something with the image
+  console.log("Photo captured!");
+});
