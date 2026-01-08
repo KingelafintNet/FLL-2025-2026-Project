@@ -10,11 +10,44 @@ const resultBox = document.getElementById("result");
 cameraBtn.addEventListener("click", () => cameraInput.click());
 uploadBtn.addEventListener("click", () => fileInput.click());
 
+document.getElementById("capture-btn").addEventListener("click", () => {
+  getLocation((coords) => {
+    const canvas = document.getElementById("photo-canvas");
+    const imageData = canvas.toDataURL("image/png");
+
+    fetch("/upload-photo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        image: imageData,
+        lat: coords.lat,
+        lng: coords.lng
+      })
+    });
+  });
+});
+
 // Handle file selection (camera or upload)
 [cameraInput, fileInput].forEach(input => {
   input.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
+      function getLocation(callback) {
+        if (!navigator.geolocation) {
+          alert("Geolocation not supported");
+          return;
+        }
+      
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            callback({
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
+            });
+          },
+          () => alert("Unable to retrieve location")
+        );
+      }      
       // Show preview
       preview.src = URL.createObjectURL(file);
       preview.style.display = "block";
@@ -68,4 +101,7 @@ function toBase64(file) {
     reader.onload = () => resolve(reader.result.split(",")[1]);
     reader.onerror = error => reject(error);
   });
+}
+if (page === "map") {
+  pageContent.innerHTML = '<iframe src="map.html" style="width:100%;height:600px;border:none;"></iframe>';
 }

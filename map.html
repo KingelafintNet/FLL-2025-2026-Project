@@ -11,6 +11,7 @@
 <body>
   <!-- Header -->
   <header class="site-header">
+
     <div class="logo">
       <img src="images/digscord.jpg" alt="logo" height="200px" width="300px"> 
       <span class="brand">Digscord</span>
@@ -45,5 +46,29 @@
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="/js/map.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<div id="map" style="height: 500px;"></div>
+
+<script>
+  const map = L.map("map").setView([0, 0], 2);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19
+  }).addTo(map);
+
+  fetch("/photos")
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(photo => {
+        const marker = L.marker([photo.lat, photo.lng]).addTo(map);
+
+        marker.bindPopup(`
+          <img src="${photo.image}" width="200" />
+        `);
+      });
+    });
+</script>
 </body>
 </html>
