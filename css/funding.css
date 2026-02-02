@@ -1,143 +1,242 @@
+/* Digscord Funding Page — Mobile-first, polished, homepage-matching */
+
 :root {
   --cream: #FAFAC8;
   --tea-green: #C9E3AC;
   --pistachio: #90BE6D;
   --carrot-orange: #EA9010;
   --dark-brown: #37371F;
+  --shadow: rgba(0,0,0,0.12);
+}
+
+/* Global reset + smooth animations */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 body {
-  margin: 0;
   font-family: "Segoe UI", sans-serif;
   background: var(--cream);
   color: var(--dark-brown);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 16px;
+  animation: fadeIn 0.4s ease;
 }
 
-/* Header */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--pistachio);
-  padding: 0.75rem 1rem;
-  flex-wrap: wrap;
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
+
+/* ---------------- HEADER ---------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--pistachio), var(--tea-green));
+  padding: 1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .logo {
   display: flex;
   align-items: center;
   font-weight: bold;
   font-size: 1.5rem;
 }
-.logo .icon { margin-right: 0.5rem; }
-.nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.logo img {
+  height: 70px;
+  width: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .nav-btn {
   background: var(--tea-green);
-  padding: 0.5rem 0.9rem;
-  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
   text-decoration: none;
   color: inherit;
   font-weight: 600;
+  min-height: 44px;
 }
-.nav-btn:hover, .nav-btn.active {
+
+.nav-btn:hover,
+.nav-btn.active {
   background: var(--carrot-orange);
   color: white;
 }
 
-.logo img {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+.sign-in {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.sign-in { display: flex; gap: 0.5rem; }
 .sign-btn {
   background: var(--tea-green);
-  padding: 0.5rem 0.9rem;
-  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
   text-decoration: none;
   color: inherit;
+  min-height: 44px;
 }
-.sign-btn.alt { background: var(--carrot-orange); color: white; }
 
-/* Funding */
+.sign-btn.alt {
+  background: var(--carrot-orange);
+  color: white;
+}
+
+/* ---------------- FUNDING SECTION ---------------- */
+
 .funding-container {
   flex: 1;
   max-width: 700px;
   margin: 2rem auto;
-  padding: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px var(--shadow);
 }
+
 .funding-container h2 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.8rem;
+  color: var(--carrot-orange);
 }
+
 #search-input {
   width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+  padding: 0.8rem;
+  margin-bottom: 1.25rem;
+  border-radius: 10px;
   border: 1px solid var(--dark-brown);
   background: var(--tea-green);
   font-size: 1rem;
 }
+
 .funding-list {
   list-style: none;
   padding: 0;
 }
+
 .funding-list li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
 }
+
 .funding-list a {
   display: block;
   background: var(--carrot-orange);
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
   text-decoration: none;
   color: white;
   font-weight: bold;
-  transition: background 0.2s ease;
+  box-shadow: 0 3px 10px var(--shadow);
 }
+
 .funding-list a:hover {
+  transform: translateY(-3px);
   background: #d67f0c;
 }
 
-/* Suggest form */
+/* ---------------- SUGGEST FORM ---------------- */
+
 .suggest-form {
   margin-top: 2rem;
+  text-align: center;
 }
+
 .suggest-form h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  color: var(--carrot-orange);
 }
+
 #suggest-input {
   width: 70%;
-  padding: 0.7rem;
-  border-radius: 8px;
+  padding: 0.8rem;
+  border-radius: 10px;
   border: 1px solid var(--dark-brown);
   background: var(--tea-green);
   font-size: 1rem;
 }
+
 #suggest-btn {
   margin-left: 0.5rem;
   background: var(--carrot-orange);
   color: white;
   border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
+  padding: 0.8rem 1.3rem;
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  min-height: 44px;
 }
+
 #suggest-btn:hover {
+  transform: translateY(-3px);
   background: #d67f0c;
 }
 
-/* Footer */
+/* ---------------- FOOTER ---------------- */
+
 .site-footer {
   background: var(--dark-brown);
   color: var(--cream);
   text-align: center;
   padding: 1rem;
+  margin-top: auto;
+  border-radius: 10px;
 }
+
+/* ---------------- LAPTOP / DESKTOP ---------------- */
+
+@media (min-width: 768px) {
+
+  body {
+    padding: 32px;
+  }
+
+  .site-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    height: 85px;
+  }
+
+  .funding-container {
+    padding: 2rem;
+  }
+
+  .funding-container h2 {
+    font-size: 2rem;
+  }
+
+  #suggest-input {
+    width: 60%;
+  }
+}
+

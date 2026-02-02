@@ -1,124 +1,208 @@
+/* Digscord Filters Page — Mobile-first, polished, homepage-matching */
+
 :root {
-    --cream: #EAEFBD;
-    --tea-green: #C9E3AC;
-    --pistachio: #90BE6D;
-    --carrot-orange: #EA9010;
-    --dark-brown: #37371F;
-  }
-  
+  --cream: #EAEFBD;
+  --tea-green: #C9E3AC;
+  --pistachio: #90BE6D;
+  --carrot-orange: #EA9010;
+  --dark-brown: #37371F;
+  --shadow: rgba(0,0,0,0.12);
+}
+
+/* Global reset + smooth animations */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--cream);
+  color: var(--dark-brown);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 16px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------------- HEADER ---------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--pistachio), var(--tea-green));
+  padding: 1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo img {
+  height: 70px;
+  width: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-btn {
+  background: var(--tea-green);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  min-height: 44px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: var(--carrot-orange);
+  color: white;
+}
+
+.sign-in {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sign-btn {
+  background: var(--tea-green);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  min-height: 44px;
+}
+
+.sign-btn.alt {
+  background: var(--carrot-orange);
+  color: white;
+}
+
+/* ---------------- FILTERS SECTION ---------------- */
+
+.filters-container {
+  flex: 1;
+  max-width: 600px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px var(--shadow);
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-form label {
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+.filter-form input {
+  padding: 0.7rem;
+  border: 1px solid var(--dark-brown);
+  border-radius: 10px;
+  background: var(--tea-green);
+  font-size: 1rem;
+}
+
+#filter-btn {
+  margin-top: 1rem;
+  background: var(--carrot-orange);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.3rem;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+#filter-btn:hover {
+  transform: translateY(-3px);
+  background: #d67f0c;
+}
+
+/* ---------------- RESULTS ---------------- */
+
+.filter-results {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  background: var(--tea-green);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px var(--shadow);
+  font-size: 1rem;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+.site-footer {
+  background: var(--dark-brown);
+  color: var(--cream);
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+  border-radius: 10px;
+}
+
+/* ---------------- LAPTOP / DESKTOP ---------------- */
+
+@media (min-width: 768px) {
+
   body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: var(--cream);
-    color: var(--dark-brown);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    padding: 32px;
   }
-  
-  /* Header/nav reused */
+
   .site-header {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    background: var(--pistachio);
-    padding: 0.75rem 1rem;
-    flex-wrap: wrap;
   }
-  .logo {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
+
   .logo img {
-    height: 80px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    height: 85px;
   }
-  
-  .logo .icon { margin-right: 0.5rem; }
-  .nav {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .nav-btn {
-    background: var(--tea-green);
-    border: none;
-    padding: 0.5rem 0.9rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    text-decoration: none;
-    color: inherit;
-  }
-  .nav-btn:hover { background: var(--pistachio); }
-  .sign-in {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .sign-btn {
-    background: var(--tea-green);
-    border: none;
-    padding: 0.5rem 0.9rem;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-  }
-  .sign-btn.alt {
-    background: var(--carrot-orange);
-    color: white;
-  }
-  
-  /* Main filters form */
+
   .filters-container {
-    flex: 1;
-    max-width: 600px;
-    margin: 2rem auto;
-    background: var(--tea-green);
-    padding: 2rem;
-    border-radius: 12px;
+    padding: 2.5rem;
   }
-  .filter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+
   .filter-form label {
-    font-weight: bold;
+    font-size: 1.15rem;
   }
-  .filter-form input {
-    padding: 0.5rem;
-    border: 1px solid var(--dark-brown);
-    border-radius: 6px;
-  }
+
   #filter-btn {
-    margin-top: 1rem;
-    background: var(--carrot-orange);
-    color: white;
-    border: none;
-    padding: 0.7rem 1.2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
+    font-size: 1.1rem;
   }
-  .filter-results {
-    margin-top: 2rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 8px;
-  }
-  
-  /* Footer */
-  .site-footer {
-    background: var(--dark-brown);
-    color: var(--cream);
-    text-align: center;
-    padding: 1rem;
-  }
-  
+}
+ 

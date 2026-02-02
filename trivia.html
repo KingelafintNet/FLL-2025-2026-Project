@@ -28,22 +28,42 @@
   <main class="trivia-container">
     <h2>Trivia Time 🏺</h2>
 
+    <!-- SETUP SECTION -->
     <div class="setup-box">
       <span class="label">Difficulty:</span>
       <button class="level-btn active" data-level="easy">Easy</button>
       <button class="level-btn" data-level="normal">Normal</button>
       <button class="level-btn" data-level="hard">Hard</button>
+    </div>
+
+    <!-- NEW QUESTION COUNT SELECTOR -->
+    <div class="setup-box">
+      <span class="label">Number of Questions:</span>
+      <select id="question-count" class="level-btn" style="border-radius: 8px; padding: 0.5rem 1rem;">
+        <option value="5">5 Questions</option>
+        <option value="10">10 Questions</option>
+        <option value="15">15 Questions</option>
+        <option value="20">20 Questions</option>
+        <option value="25">25 Questions</option>
+        <option value="30">30 Questions</option>
+        <option value="35">35 Questions</option>
+        <option value="40">40 Questions</option>
+        <option value="45">45 Questions</option>
+        <option value="50">50 Questions</option>
+      </select>
       <button id="start-btn">Start Quiz</button>
     </div>
 
+    <!-- HUD -->
     <div id="hud" class="hud">
       <p id="progress-display"></p>
       <p id="score-display"></p>
       <p id="timer-display"></p>
     </div>
 
+    <!-- QUESTION BOX -->
     <div id="question-box" class="question-box">
-      <p id="question-text">Choose a difficulty and press Start.</p>
+      <p id="question-text">Choose settings and press Start.</p>
       <div id="choices" class="choices"></div>
       <p id="feedback"></p>
       <button id="next-btn" class="control-btn">Next Question</button>

@@ -1,5 +1,5 @@
 // Digscord Trivia — 3 modes, 50 questions each, with explanations, timer, and local leaderboard
-
+const totalQuestions = parseInt(document.getElementById("question-count").value);
 const allQuestions = {
   easy: [
     { question: "Which ancient civilization built the pyramids at Giza?", choices: ["Mesopotamia", "Phoenicia", "Egypt", "Persia"], answer: 2, explanation: "Egyptians built pyramids as monumental tombs for pharaohs." },
@@ -108,56 +108,52 @@ const allQuestions = {
     { question: "Strontium isotope analysis informs on…", choices: ["Color", "Mobility and provenance", "Weapon sharpness", "DNA sequences"], answer: 1, explanation: "Sr ratios track childhood geology and migration." }
   ],
   hard: [
-    { question: "Which isotope fraction is central to radiocarbon dating corrections?", choices: ["δ18O", "δ13C", "δ34S", "δ15N"], answer: 1, explanation: "δ13C normalizes isotopic fractionation in 14C dating." },
-    { question: "Obsidian hydration dating depends primarily on…", choices: ["UV exposure", "Hydration rind thickness", "Magnetic declination", "Protein residues"], answer: 1, explanation: "Hydration layers grow over time, indicating age." },
-    { question: "AMS radiocarbon differs from conventional by…", choices: ["Wet chemistry only", "Counting atoms directly", "Bone dissolution alone", "Neutron activation"], answer: 1, explanation: "Accelerator Mass Spectrometry counts 14C atoms." },
-    { question: "Varves method dates…", choices: ["Tree rings", "Annual lake sediments", "Ice cores only", "Soot layers"], answer: 1, explanation: "Varves are seasonal laminae in lakes." },
-    { question: "Chalcolithic refers to…", choices: ["Pure stone age", "Copper-Stone transitional period", "Iron dominance", "Glass age"], answer: 1, explanation: "Copper use emerges alongside stone technologies." },
-    { question: "Star Carr is…", choices: ["Roman villa", "Mesolithic wetland site in England", "Inca fort", "Bronze foundry"], answer: 1, explanation: "Exceptional organic preservation from waterlogged contexts." },
     { question: "Harris Matrix is used to…", choices: ["Model economies", "Sequence stratigraphic units", "Analyze DNA", "Fire pottery"], answer: 1, explanation: "It diagrams context relationships in stratigraphy." },
-    { question: "Thermal alteration of lithics indicates…", choices: ["Sun bleaching", "Heat treatment for better flaking", "Water soaking", "Ice polishing"], answer: 1, explanation: "Heat treatment improves knappability of some cherts." },
-    { question: "Use-wear analysis on tools identifies…", choices: ["Ownership", "Function via micro-polish/edge damage", "Trade routes only", "Magnetism"], answer: 1, explanation: "Microscopic traces reveal contact materials and motions." },
-    { question: "Bayesian modeling in 14C series improves…", choices: ["Colorization", "Chronological precision", "Geography", "DNA haplogroups"], answer: 1, explanation: "Combines dates with stratigraphic priors for refined timelines." },
-    { question: "Pazyryk burials are known for…", choices: ["Gold ships", "Frozen kurgans preserving textiles and tattoos", "Bronze skyscrapers", "Glass palaces"], answer: 1, explanation: "Permafrost preserved organic materials remarkably." },
-    { question: "Tephrochronology correlates layers using…", choices: ["Wind roses", "Volcanic ash fingerprints", "Mollusk shells", "Sand color"], answer: 1, explanation: "Geochemical signatures tie deposits to eruptions." },
-    { question: "Refitting study does what?", choices: ["Stains ceramics", "Reassembles broken artifacts", "Measures pollen", "Weighs bones"], answer: 1, explanation: "Rejoining fragments reconstructs object histories and knapping." },
-    { question: "Combe Grenal sequence documents…", choices: ["Neolithic farming", "Middle Paleolithic stratigraphy", "Roman trade", "Maya dynasties"], answer: 1, explanation: "Deep stratified deposits of Mousterian industries." },
-    { question: "Chaîne opératoire records…", choices: ["Ownership", "Operational sequence of production", "Calories", "Altitude"], answer: 1, explanation: "Stepwise reconstruction of manufacturing processes." },
     { question: "Holocene onset is roughly…", choices: ["100 ka", "11.7 ka BP", "2 ka", "50 ka"], answer: 1, explanation: "Holocene begins ~11,700 years before present." },
-    { question: "Lapis lazuli in Bronze Age artifacts suggests…", choices: ["Local UK source", "Afghanistan trade networks", "Amazon quarries", "Iceland mines"], answer: 1, explanation: "Primary sources in Badakhshan linked via long-distance trade." },
-    { question: "Petrification of organic material creates…", choices: ["Clay", "Fossils with mineral replacement", "Ice", "Resin"], answer: 1, explanation: "Minerals replace tissues preserving morphology." },
-    { question: "GPR survey detects…", choices: ["Planetary cores", "Subsurface features by wave reflections", "DNA strands", "Atmospheric CO2"], answer: 1, explanation: "GPR identifies buried structures and stratigraphy contrasts." },
-    { question: "Seriation orders assemblages by…", choices: ["GPS only", "Changing style frequencies", "Metal content", "Site size"], answer: 1, explanation: "Frequency seriation charts stylistic change over time." },
-    { question: "Arsenical copper precedes widespread…", choices: ["Tin bronze", "Wrought iron", "Stainless steel", "Lead glass"], answer: 0, explanation: "Early alloys often used arsenic before tin bronze dominance." },
-    { question: "Wari and Tiwanaku interaction involved…", choices: ["Polar expeditions", "Andean spheres with distinct polities", "Nomadic Vikings", "Roman governors"], answer: 1, explanation: "Middle Horizon polities with overlapping influences." },
-    { question: "Domestication of maize is traced to…", choices: ["Europe", "Mesoamerica", "Siberia", "Australia"], answer: 1, explanation: "Maize domesticated from teosinte in Mesoamerica." },
-    { question: "Scapula divination is common in…", choices: ["Modern Europe", "East Asian oracle bone traditions", "Antarctica", "Sahara"], answer: 1, explanation: "Shang dynasty oracle bones include scapula divination." },
-    { question: "Taphonomy studies…", choices: ["Burial laws", "Processes from death to discovery", "Metal phases", "Language drift"], answer: 1, explanation: "It examines post-depositional transformations of remains." },
-    { question: "Microliths are characteristic of…", choices: ["Medieval knights", "Mesolithic toolkits", "Roman legionaries", "Bronze elites"], answer: 1, explanation: "Small backed blades used in composite tools." },
-    { question: "An iron bloom emerges from…", choices: ["Glass kiln", "Bloomery furnace", "Potter’s wheel", "Salt pan"], answer: 1, explanation: "Spongy mass of iron from bloomery smelting." },
-    { question: "The ‘Sea Peoples’ are discussed in…", choices: ["Han annals", "Late Bronze Age Mediterranean sources", "Norse sagas", "Toltec codices"], answer: 1, explanation: "They appear in Egyptian inscriptions and regional disruptions." },
-    { question: "Metate and mano function to…", choices: ["Cut wood", "Grind grains/seeds", "Forge bronze", "Press olives"], answer: 1, explanation: "Grinding platforms and handstones for food processing." },
-    { question: "Sr isotope analysis informs on…", choices: ["Color", "Mobility/provenance", "Weapon sharpness", "DNA sequences"], answer: 1, explanation: "Sr ratios track childhood geology and migration." },
-    { question: "A ‘tell’ across Levant/Iraq is often…", choices: ["Natural dune", "Anthropogenic mound", "Glacier", "Salt dome"], answer: 1, explanation: "Human occupation layers build mounds over millennia." },
-    { question: "Pseudo-archaeology is…", choices: ["Rigorous science", "Unsubstantiated claims presented as archaeology", "Pure math", "Astronomy"], answer: 1, explanation: "Includes sensational theories lacking evidence." },
-    { question: "Beringia model proposes…", choices: ["African origin of maize", "Land bridge peopling of the Americas", "Roman conquest of China", "Viking colonization of Australia"], answer: 1, explanation: "Migration via Bering land bridge during glacial periods." },
+    { question: "Pazyryk burials are known for…", choices: ["Gold ships", "Frozen kurgans preserving textiles and tattoos", "Bronze skyscrapers", "Glass palaces"], answer: 1, explanation: "Permafrost preserved organic materials remarkably." },
     { question: "Rosette microblade technology is linked to…", choices: ["Ice carving", "Composite tools with standardized blades", "Roman mosaics", "Bronze studs"], answer: 1, explanation: "Serial microblade production for hafting." },
-    { question: "Faunal calcaneus helps in…", choices: ["Astronomy", "Species ID and butchery analysis", "Ceramic flow", "Runic grammar"], answer: 1, explanation: "Foot bones show processing marks and species differences." },
-    { question: "An adze differs from an axe by…", choices: ["Same orientation", "Transverse blade for dressing surfaces", "Rubber handle", "Ceramic edge"], answer: 1, explanation: "Adzes have blades set at right angles to the handle." },
-    { question: "Copper smelting requires…", choices: ["Cold water", "Ore roasting and reducing atmosphere", "Alkaline baths", "Pure iron"], answer: 1, explanation: "Roasted ore and charcoal reduce copper compounds to metal." },
-    { question: "Kerbs around Neolithic monuments serve…", choices: ["Water pipes", "Structural/ritual boundary", "Sewers", "Steam vents"], answer: 1, explanation: "Stone kerbs define mounds and manage erosion." },
-    { question: "Osteological paradox addresses…", choices: ["Perfect health", "Bias in skeletal samples and disease visibility", "DNA errors", "Metal fatigue"], answer: 1, explanation: "Survivorship and frailty complicate health inferences." },
-    { question: "Bitumen in archaeology is used for…", choices: ["Food spice", "Adhesive and waterproofing", "Jewelry polish", "Grain dye"], answer: 1, explanation: "Natural asphalt seals vessels and hafts tools." },
-    { question: "Neutron activation analysis (NAA) helps…", choices: ["Color films", "Source materials via elemental composition", "Cut wood", "Melt ice"], answer: 1, explanation: "Trace element fingerprints identify provenance." },
-    { question: "Chicha in Andean contexts is…", choices: ["Bronze spear", "Fermented beverage", "Gold plaque", "Textile loom"], answer: 1, explanation: "Maize- or manioc-based traditional ferment." },
-    { question: "A groma is a Roman tool for…", choices: ["Weaponry", "Surveying right angles", "Cooking", "Glass making"], answer: 1, explanation: "Surveyors used gromas to align streets and fields." },
-    { question: "Younger Dryas event is…", choices: ["Volcanic century", "Abrupt cold reversal near Pleistocene-Holocene transition", "Drought of Rome", "Hittite flood"], answer: 1, explanation: "Sudden cooling affected environments and human dispersals." },
-    { question: "Archaeomagnetic dating measures…", choices: ["Water salinity", "Remanent magnetism in fired materials", "Air pressure", "DNA hydrogen bonds"], answer: 1, explanation: "Aligns magnetic signatures with secular variation curves." },
-    { question: "Lime plaster floors signify…", choices: ["Random geology", "Intentional construction techniques", "Natural calcite beds", "Volcanic ash"], answer: 1, explanation: "Burned limestone creates durable plaster surfaces." },
-    { question: "Camelid fiber textiles are typical of…", choices: ["Siberia", "Andes", "Sahara", "Baltic"], answer: 1, explanation: "Alpaca/llama fibers are common in Andean textiles." },
-    { question: "GIS in archaeology is used to…", choices: ["Bake bread", "Analyze spatial patterns", "Distill metals", "Freeze cores"], answer: 1, explanation: "Geographic Information Systems model spatial data." },
-    { question: "A mortuary house differs from a tomb by…", choices: ["Being underwater", "Wood construction for funerary rites", "Having no bodies", "Being a palace"], answer: 1, explanation: "Mortuary houses host ritual activity and body preparation." }
-  ]
+    { question: "Varves method dates…", choices: ["Tree rings", "Annual lake sediments", "Ice cores only", "Soot layers"], answer: 1, explanation: "Varves are seasonal laminae in lakes." },
+    { question: "Use-wear analysis on tools identifies…", choices: ["Ownership", "Function via micro-polish/edge damage", "Trade routes only", "Magnetism"], answer: 1, explanation: "Microscopic traces reveal contact materials and motions." },
+    { question: "Combe Grenal sequence documents…", choices: ["Neolithic farming", "Middle Paleolithic stratigraphy", "Roman trade", "Maya dynasties"], answer: 1, explanation: "Deep stratified deposits of Mousterian industries." },
+    { question: "Taphonomy studies…", choices: ["Burial laws", "Processes from death to discovery", "Metal phases", "Language drift"], answer: 1, explanation: "It examines post-depositional transformations of remains." },
+    { question: "The ‘Sea Peoples’ are discussed in…", choices: ["Han annals", "Late Bronze Age Mediterranean sources", "Norse sagas", "Toltec codices"], answer: 1, explanation: "They appear in Egyptian inscriptions and regional disruptions." },
+    { question: "Scapula divination is common in…", choices: ["Modern Europe", "East Asian oracle bone traditions", "Antarctica", "Sahara"], answer: 1, explanation: "Shang dynasty oracle bones include scapula divination." },
+    { question: "Petrification of organic material creates…", choices: ["Clay", "Fossils with mineral replacement", "Ice", "Resin"], answer: 1, explanation: "Minerals replace tissues preserving morphology." },
+    { question: "Tephrochronology correlates layers using…", choices: ["Wind roses", "Volcanic ash fingerprints", "Mollusk shells", "Sand color"], answer: 1, explanation: "Geochemical signatures tie deposits to eruptions." },
+    { question: "Obsidian hydration dating depends primarily on…", choices: ["UV exposure", "Hydration rind thickness", "Magnetic declination", "Protein residues"], answer: 2, explanation: "Hydration layers grow over time, indicating age." },
+    { question: "Thermal alteration of lithics indicates…", choices: ["Sun bleaching", "Heat treatment for better flaking", "Water soaking", "Ice polishing"], answer: 2, explanation: "Heat treatment improves knappability of some cherts." },
+    { question: "Seriation orders assemblages by…", choices: ["GPS only", "Changing style frequencies", "Metal content", "Site size"], answer: 2, explanation: "Frequency seriation charts stylistic change over time." },
+    { question: "A ‘tell’ across Levant/Iraq is often…", choices: ["Natural dune", "Anthropogenic mound", "Glacier", "Salt dome"], answer: 2, explanation: "Human occupation layers build mounds over millennia." },
+    { question: "Arsenical copper precedes widespread…", choices: ["Tin bronze", "Wrought iron", "Stainless steel", "Lead glass"], answer: 2, explanation: "Early alloys often used arsenic before tin bronze dominance." },
+    { question: "Microliths are characteristic of…", choices: ["Medieval knights", "Mesolithic toolkits", "Roman legionaries", "Bronze elites"], answer: 2, explanation: "Small backed blades used in composite tools." },
+    { question: "Iron bloom emerges from…", choices: ["Glass kiln", "Bloomery furnace", "Potter’s wheel", "Salt pan"], answer: 2, explanation: "Spongy mass of iron from bloomery smelting." },
+    { question: "Metate and mano function to…", choices: ["Cut wood", "Grind grains/seeds", "Forge bronze", "Press olives"], answer: 2, explanation: "Grinding platforms and handstones for food processing." },
+    { question: "Faunal calcaneus helps in…", choices: ["Astronomy", "Species ID and butchery analysis", "Ceramic flow", "Runic grammar"], answer: 2, explanation: "Foot bones show processing marks and species differences." },
+    { question: "Neutron activation analysis (NAA) helps…", choices: ["Color films", "Source materials via elemental composition", "Cut wood", "Melt ice"], answer: 2, explanation: "Trace element fingerprints identify provenance." },
+    { question: "AMS radiocarbon differs from conventional by…", choices: ["Counting atoms directly", "Wet chemistry only", "Bone dissolution alone", "Neutron activation"], answer: 0, explanation: "Accelerator Mass Spectrometry counts 14C atoms." },
+    { question: "Varves method dates…", choices: ["Annual lake sediments", "Tree rings", "Ice cores only", "Soot layers"], answer: 0, explanation: "Varves are seasonal laminae in lakes." },
+    { question: "Chalcolithic refers to…", choices: ["Copper-Stone transitional period", "Pure stone age", "Iron dominance", "Glass age"], answer: 0, explanation: "Copper use emerges alongside stone technologies." },
+    { question: "Star Carr is…", choices: ["Mesolithic wetland site in England", "Roman villa", "Inca fort", "Bronze foundry"], answer: 0, explanation: "Exceptional organic preservation from waterlogged contexts." },
+    { question: "Refitting study does what?", choices: ["Reassembles broken artifacts", "Stains ceramics", "Measures pollen", "Weighs bones"], answer: 0, explanation: "Rejoining fragments reconstructs object histories and knapping." },
+    { question: "Chaîne opératoire records…", choices: ["Operational sequence of production", "Ownership", "Calories", "Altitude"], answer: 0, explanation: "Stepwise reconstruction of manufacturing processes." },
+    { question: "Lapis lazuli in Bronze Age artifacts suggests…", choices: ["Afghanistan trade networks", "Local UK source", "Amazon quarries", "Iceland mines"], answer: 0, explanation: "Primary sources in Badakhshan linked via long-distance trade." },
+    { question: "GPR survey detects…", choices: ["Subsurface features by wave reflections", "Planetary cores", "DNA strands", "Atmospheric CO2"], answer: 0, explanation: "GPR identifies buried structures and stratigraphy contrasts." },
+    { question: "Beringia model proposes…", choices: ["Land bridge peopling of the Americas", "African origin of maize", "Roman conquest of China", "Viking colonization of Australia"], answer: 0, explanation: "Migration via Bering land bridge during glacial periods." },
+    { question: "Copper smelting requires…", choices: ["Ore roasting and reducing atmosphere", "Cold water", "Alkaline baths", "Pure iron"], answer: 0, explanation: "Roasted ore and charcoal reduce copper compounds to metal." },
+    { question: "Kerbs around Neolithic monuments serve…", choices: ["Structural/ritual boundary", "Water pipes", "Sewers", "Steam vents"], answer: 0, explanation: "Stone kerbs define mounds and manage erosion." },
+    { question: "Osteological paradox addresses…", choices: ["Bias in skeletal samples and disease visibility", "Perfect health", "DNA errors", "Metal fatigue"], answer: 0, explanation: "Survivorship and frailty complicate health inferences." },
+    { question: "Bitumen in archaeology is used for…", choices: ["Adhesive and waterproofing", "Food spice", "Jewelry polish", "Grain dye"], answer: 0, explanation: "Natural asphalt seals vessels and hafts tools." },
+    { question: "Which isotope fraction is central to radiocarbon dating corrections?", choices: ["δ18O", "δ13C", "δ34S", "δ15N"], answer: 3, explanation: "δ13C normalizes isotopic fractionation in 14C dating." },
+    { question: "Göbekli Tepe is significant for…", choices: ["Bronze factories", "Early monumental ritual architecture", "Imperial palaces", "Medieval forts"], answer: 3, explanation: "c. 9600–8200 BCE site with massive T-pillars." },
+    { question: "Dendrochronology dates…", choices: ["Sea shells", "Tree rings", "Clay tablets", "Iron nails"], answer: 3, explanation: "Matching ring patterns produces calendar dates." },
+    { question: "Nazca lines are…", choices: ["Underground caves", "Geoglyphs in Peru", "Bronze inscriptions", "Ship timbers"], answer: 3, explanation: "Large ground drawings visible from the air." },
+    { question: "Çatalhöyük is a…", choices: ["Roman fort", "Neolithic mega-site", "Medieval abbey", "Bronze foundry"], answer: 3, explanation: "Dense housing and rich art characterize this Neolithic site." },
+    { question: "The Lapita culture is associated with…", choices: ["Andes", "Pacific migration and pottery", "Baltic", "Sahara"], answer: 3, explanation: "Lapita pottery tracks Austronesian expansion." },
+    { question: "The Antikythera mechanism is a(n)…", choices: ["Sword", "Analog computer", "Helmet", "Oil lamp"], answer: 3, explanation: "It modeled astronomical cycles with gears." },
+    { question: "Tell el-Amarna letters document…", choices: ["Greek myths", "Diplomacy in the Late Bronze Age", "Roman law", "Chinese rites"], answer: 3, explanation: "Clay tablets record international diplomacy." },
+    { question: "Uruk period marks emergence of…", choices: ["Rome", "Early cities in Mesopotamia", "Han China", "Norse states"], answer: 3, explanation: "Uruk saw urbanism, writing, and bureaucracy." },
+    { question: "Pollen analysis reveals…", choices: ["Star maps", "Past vegetation", "Ocean currents", "Metal ratios"], answer: 3, explanation: "Fossil pollen reconstructs past environments." }
+  ]  
 };
 
 // State
@@ -167,6 +163,30 @@ let current = 0;
 let score = 0;
 let startTime = null;
 let timerInterval = null;
+
+function startQuiz() {
+  // 1. Get selected difficulty
+  const selectedDifficulty = document.querySelector(".level-btn.active").dataset.level;
+
+  // 2. Get number of questions the user selected
+  const totalQuestions = parseInt(document.getElementById("question-count").value);
+
+  // 3. Load all questions for that difficulty
+  questions = [...allQuestions[selectedDifficulty]];
+
+  // 4. Shuffle the questions
+  questions = questions.sort(() => Math.random() - 0.5);
+
+  // 5. Slice the list to the selected amount (THIS IS STEP 2)
+  questions = questions.slice(0, totalQuestions);
+
+  // 6. Reset quiz state
+  currentQuestionIndex = 0;
+  score = 0;
+
+  // 7. Load the first question
+  loadQuestion();
+}
 
 // DOM elements
 const questionText = document.getElementById("question-text");
