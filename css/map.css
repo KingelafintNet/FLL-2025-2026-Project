@@ -91,7 +91,7 @@
   /* Responsive map */
   #map {
     flex: 1;
-    height: 80vh;       /* fills 80% of viewport height */
+    height: 80%;       /* fills 80% of viewport height */
     width: 100%;
     border-radius: 12px;
     border: 2px solid var(--dark-brown);

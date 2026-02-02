@@ -1,29 +1,121 @@
-// -----------------------------
-// START CAMERA
-// -----------------------------
-const video = document.getElementById("camera-stream");
-const canvas = document.getElementById("photo-canvas");
-const captureBtn = document.getElementById("capture-btn");
+// Grab elements
+const cameraBtn = document.getElementById("camera-btn");
+const uploadBtn = document.getElementById("upload-btn");
+const cameraInput = document.getElementById("camera-input");
+const fileInput = document.getElementById("file-input");
+const preview = document.getElementById("preview");
+const resultBox = document.getElementById("result");
 
-// Turn on the camera
-async function startCamera() {
+// Trigger hidden inputs
+cameraBtn.addEventListener("click", () => cameraInput.click());
+uploadBtn.addEventListener("click", () => fileInput.click());
+
+// Handle file selection (camera or upload)
+[cameraInput, fileInput].forEach(input => {
+  input.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Show preview
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
+
+      // Analyze with backend
+      analyzeImage(file);
+    }
+  });
+});
+
+// Send image to backend for Google Vision analysis
+async function analyzeImage(file) {
+  resultBox.innerHTML = "<p>🔎 Analyzing artifact...</p>";
+
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = stream;
+    // Convert file to base64
+    const base64Data = await toBase64(file);
+
+    // Send to backend
+    const response = await fetch("http://localhost:5000/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ image: base64Data })
+    });
+
+    if (!response.ok) throw new Error("Server error");
+
+    const data = await response.json();
+
+    if (data.labels && data.labels.length > 0) {
+      resultBox.innerHTML = `
+        <h3>Results:</h3>
+        <ul>
+          ${data.labels.map(label => `<li>${label}</li>`).join("")}
+        </ul>
+      `;
+    } else {
+      resultBox.innerHTML = "<p>No labels detected.</p>";
+    }
   } catch (err) {
-    alert("Camera access denied or unavailable.");
+    console.error(err);
+    resultBox.innerHTML = "<p>❌ Error analyzing image. Check backend connection.</p>";
   }
 }
 
-startCamera();
+// Helper: convert file to base64
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = error => reject(error);
+  });
+}
+// ----------------------------------------------------
+// SEND PHOTO + GPS TO SERVER FOR MAP USE
+// ----------------------------------------------------
+function sendPhotoToMap(imageData) {
+  // Get GPS location
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const coords = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude
+      };
 
-// -----------------------------
-// CAPTURE PHOTO
-// -----------------------------
+      // Send to server
+      fetch("/upload-photo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          image: imageData,
+          lat: coords.lat,
+          lng: coords.lng
+        })
+      })
+      .then(res => res.json())
+      .then(() => {
+        console.log("Photo + GPS saved for map");
+      })
+      .catch(err => console.error("Upload error:", err));
+    },
+    () => {
+      alert("Could not get GPS location.");
+    }
+  );
+}
+
+// ----------------------------------------------------
+// HOOK INTO YOUR CAPTURE BUTTON
+// ----------------------------------------------------
 captureBtn.addEventListener("click", () => {
-  const context = canvas.getContext("2d");
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  const ctx = canvas.getContext("2d");
 
-  // Optional: show a message or do something with the image
-  console.log("Photo captured!");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  const imageData = canvas.toDataURL("image/png");
+
+  // SEND TO MAP SYSTEM
+  sendPhotoToMap(imageData);
 });
