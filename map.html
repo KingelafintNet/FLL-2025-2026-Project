@@ -1,55 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Artifact Map | Digscord</title>
-  <link rel="stylesheet" href="/css/map.css"/>
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <meta charset="UTF-8">
+    <title>GPS Photo Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/map.js" defer></script>
 </head>
+
 <body>
-  <!-- Header -->
-  <header class="site-header">
-
-    <div class="logo">
-      <img src="images/digscord.jpg" alt="logo" height="200px" width="300px"> 
-      <span class="brand">Digscord</span>
+    <div id="topbar">
+        <span id="liveCoords">Lat: ---, Lon: ---</span>
     </div>
-    <nav class="nav">
-      <a href="index.html" class="nav-btn">Home</a>
-      <a href="identify.html" class="nav-btn">Identify</a>
-      <a href="collection.html" class="nav-btn">Collection</a>
-      <a href="filters.html" class="nav-btn">Filters</a>
-      <a href="map.html" class="nav-btn">Map</a>
-      <a href="chat.html" class="nav-btn">Chat</a>
-      <a href="funding.html" class="nav-btn">Funding</a>
-      <a href="volunteer.html" class="nav-btn">Volunteer</a>
-      <a href="trivia.html" class="nav-btn">Trivia</a>
-    </nav>
-    <div class="sign-in">
-      <a href="visitor.html" class="sign-btn">Visitor sign-in</a>
-      <a href="arch.html" class="sign-btn alt">Archeologist sign-in</a>
+
+    <div id="container">
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <h2>Saved Photos</h2>
+
+            <div id="photoList"></div>
+
+            <button id="takePhotoBtn">📸 Take New Photo</button>
+        </div>
+
+        <!-- Map -->
+        <div id="map"></div>
+
     </div>
-  </header>
-
-  <!-- Main content -->
-  <main class="map-container">
-    <h2>Artifact Map</h2>
-    <div id="map"></div>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2025 Digscord | Knowledge through curiosity</p>
-  </footer>
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="/js/map.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<div id="map" style="height: 1500px;"></div>
-
 </body>
 </html>
