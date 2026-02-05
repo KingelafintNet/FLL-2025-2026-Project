@@ -1,0 +1,221 @@
+/* Digscord GPS Page — polished, two-column layout */
+
+:root {
+  --cream: #EAEFBD;
+  --tea-green: #C9E3AC;
+  --pistachio: #90BE6D;
+  --carrot-orange: #EA9010;
+  --dark-brown: #37371F;
+  --shadow: rgba(0,0,0,0.15);
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: 0.2s ease;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--cream);
+  color: var(--dark-brown);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--pistachio), var(--tea-green));
+  padding: 1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo img {
+  height: 70px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-btn {
+  background: var(--tea-green);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: var(--carrot-orange);
+  color: white;
+}
+
+/* COORD BAR */
+#topbar {
+  background: var(--tea-green);
+  padding: 0.7rem;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* MAIN LAYOUT */
+#container {
+  display: flex;
+  flex: 1;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* SIDEBAR */
+#sidebar {
+  width: 300px;
+  background: white;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#photoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.photo-item {
+  background: var(--tea-green);
+  padding: 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.photo-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.delete-btn {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c64541;
+}
+
+/* BUTTONS */
+.action-btn {
+  background: var(--carrot-orange);
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.action-btn:hover {
+  background: #d67f0c;
+  transform: translateY(-3px);
+}
+
+.cancel-btn {
+  background: #777;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MAP */
+#map {
+  flex: 1;
+  height: calc(100vh - 200px);
+  border-radius: 16px;
+  box-shadow: 0 3px 10px var(--shadow);
+  overflow: hidden;
+}
+
+/* CAMERA POPUP */
+#cameraOverlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.1);
+  z-index: 2000;
+}
+
+#cameraOverlay.hidden {
+  display: none;
+}
+
+#cameraPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px var(--shadow);
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#cameraPopup.hidden {
+  display: none;
+}
+
+#cameraStream {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#cameraCanvas {
+  display: none;
+}
