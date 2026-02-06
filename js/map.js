@@ -105,12 +105,13 @@ function renderPhotos() {
     div.className = "photo-item";
 
     div.innerHTML = `
-      <img src="${p.image}">
-      <strong>${p.title}</strong><br>
-      <small>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}</small><br>
-      <button class="delete-btn" data-index="${i}">Delete</button>
-    `;
-
+    <img src="${p.image}">
+    <strong>${p.title}</strong><br>
+    <em>${p.description}</em><br>
+    <small>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}</small><br>
+    <button class="delete-btn" data-index="${i}">Delete</button>
+`;
+  
     div.addEventListener("click", () => {
       map.setView([p.lat, p.lon], 16);
 
